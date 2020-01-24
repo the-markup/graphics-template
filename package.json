@@ -1,0 +1,26 @@
+{
+  "name": "graphic-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "node scripts/compile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/the_markup/graphic-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/the_markup/graphic-template/issues"
+  },
+  "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "glob-fs": "^0.1.7"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.2"
+  }
+}

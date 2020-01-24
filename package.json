@@ -18,7 +18,8 @@
   "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
   "dependencies": {
     "fs-extra": "^8.1.0",
-    "glob-fs": "^0.1.7"
+    "glob-fs": "^0.1.7",
+    "node-sass": "^4.13.1"
   },
   "devDependencies": {
     "handlebars": "^4.7.2"

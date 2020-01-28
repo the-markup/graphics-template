@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const html = require('./compile/html');
 const css = require('./compile/css');
+const assets = require('./compile/assets');
 const javascript = require('./compile/javascript');
 const logger = require('./utilities/logger');
 const manifest = new Object;
@@ -44,6 +45,10 @@ javascriptPaths.forEach(path => {
 
   logger.log('js', 'finished ' + path);
 })
+
+logger.log('assets', 'transferring');
+assets.init();
+logger.log('assets', 'finished');
 
 fs.writeFileSync('.build/manifest.json', JSON.stringify(manifest, null, 2));
 logger.log('json', 'writing manifest file');

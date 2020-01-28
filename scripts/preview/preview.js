@@ -1,9 +1,10 @@
 const handlebars = require('handlebars');
 const fs = require('fs-extra');
-const manifest = require('../../.build/manifest.json');
+const config = require('../../config.json');
 
 module.exports = {
   init() {
+    const manifest = require('../../.build/manifest.json');
     const articleTemplate = fs.readFileSync('./scripts/preview/article.html', 'utf8');
 
     let data = new Object;
@@ -18,6 +19,8 @@ module.exports = {
     manifest.js.forEach(script => {
       data.js.push('/' + script);
     });
+
+    data.config = config;
 
     const template = handlebars.compile(articleTemplate, data);
     fs.writeFileSync('.build/preview.html', template(data));

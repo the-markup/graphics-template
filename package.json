@@ -21,6 +21,7 @@
     "browser-sync": "^2.26.7",
     "browser-sync-reuse-tab": "^1.0.3",
     "chalk": "^3.0.0",
+    "csvjson": "^5.1.0",
     "deasync": "^0.1.19",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",

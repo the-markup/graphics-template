@@ -4,14 +4,14 @@ const glob = require('glob');
 const logger = require('../utilities/logger');
 
 module.exports = {
-  render(path) {
+  render(path, data) {
     logger.log('html', 'compiling...');
     this.registerHelpers();
     this.registerPartials();
 
     const html = fs.readFileSync(path, 'utf8');
     const template = handlebars.compile(html);
-    fs.writeFileSync('.build/index.html', template());
+    fs.writeFileSync('.build/index.html', template(data));
 
     logger.log('html', 'finished');
   },

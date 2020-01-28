@@ -5,6 +5,7 @@ const css = require('./compile/css');
 const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
 const preview = require('./preview/preview');
+const data = require('../src/data/clean');
 const manifest = new Object;
 
 if (!fs.existsSync('.build')) {
@@ -13,7 +14,7 @@ if (!fs.existsSync('.build')) {
   fs.emptyDirSync('.build');
 }
 
-html.render('src/templates/index.html');
+html.render('src/templates/index.html', data.init());
 manifest.html = 'index.html';
 
 const cssPaths = glob.sync('src/sass/*.scss');

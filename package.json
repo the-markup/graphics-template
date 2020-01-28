@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
   "dependencies": {
+    "chalk": "^3.0.0",
     "deasync": "^0.1.19",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",

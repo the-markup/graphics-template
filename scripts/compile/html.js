@@ -1,6 +1,6 @@
 const handlebars = require('handlebars');
 const fs = require('fs-extra');
-const glob = require('glob-fs')({ gitignore: true });
+const glob = require('glob');
 
 module.exports = {
   render(path) {
@@ -19,7 +19,7 @@ module.exports = {
   },
 
   registerPartials() {
-    const partials = glob.readdirSync('src/templates/**/*.*');
+    const partials = glob.sync('src/templates/**/*.*');
 
     partials.forEach(partial => {
       const name = partial.replace('src/templates/', '').split('.')[0];

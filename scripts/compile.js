@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const glob = require('glob-fs')({ gitignore: true });
+const glob = require('glob');
 const html = require('./compile/html');
 const css = require('./compile/css');
 const javascript = require('./compile/javascript');
@@ -12,7 +12,7 @@ if (!fs.existsSync('.build')) {
 html.render('src/templates/index.html');
 manifest.html = 'index.html';
 
-const cssPaths = glob.readdirSync('src/sass/*.scss');
+const cssPaths = glob.sync('src/sass/*.scss');
 
 cssPaths.forEach(path => {
   css.render(path);
@@ -22,14 +22,14 @@ cssPaths.forEach(path => {
   manifest.css.push(path.replace('src/sass/', '').replace('.scss', '.css'));
 });
 
-const javascriptPaths = glob.readdirSync('src/javascript/*.js');
+const javascriptPaths = glob.sync('src/javascript/*.js');
 
 javascriptPaths.forEach(path => {
   javascript.render(path);
   if (!manifest.js) {
     manifest.js = new Array();
   }
-  manifest.css.push(path.replace('src/js/', ''));
+  manifest.js.push(path.replace('src/javascript/', ''));
 })
 
 fs.writeFileSync('.build/manifest.json', JSON.stringify(manifest, null, 2));

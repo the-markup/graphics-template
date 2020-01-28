@@ -5,13 +5,17 @@ const logger = require('../utilities/logger');
 module.exports = {
   render(path) {
     logger.log('css', 'compiling... ' + path);
-    const css = sass.renderSync({
-      file: path
-    }).css.toString('utf8');
+    try {
+      const css = sass.renderSync({
+        file: path
+      }).css.toString('utf8');
 
-    const fileName = path.replace(/^.*[\\\/]/, '').replace('.scss', '');
+      const fileName = path.replace(/^.*[\\\/]/, '').replace('.scss', '');
 
-    fs.writeFileSync(`.build/${fileName}.css`, css);
-    logger.log('css', 'finished ' + path);
+      fs.writeFileSync(`.build/${fileName}.css`, css);
+      logger.log('css', 'finished ' + path);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

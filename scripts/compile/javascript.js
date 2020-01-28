@@ -1,10 +1,11 @@
-const fs = require('fs-extra');
 const logger = require('../utilities/logger');
+const deasync = require('deasync');
 const webpack = require('webpack');
 
 module.exports = {
   render(path) {
     logger.log('js', 'compiling ' + path);
+    let done = false;
 
     const compiler = webpack({
       mode: 'production',
@@ -16,8 +17,13 @@ module.exports = {
     });
 
     compiler.run((err, stats) => {
-      logger.log('js', 'really finished ' + path);
+      if (stats.compilation.errors && stats.compilation.errors.length) {
+        console.log(stats.compilation.errors);
+      }
+      done = true;
     });
+
+    require('deasync').loopWhile(function(){return !done;});
 
     logger.log('js', 'finished ' + path);
   }

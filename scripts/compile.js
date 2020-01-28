@@ -4,6 +4,7 @@ const html = require('./compile/html');
 const css = require('./compile/css');
 const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
+const preview = require('./preview/preview');
 const manifest = new Object;
 
 if (!fs.existsSync('.build')) {
@@ -37,3 +38,4 @@ javascriptPaths.forEach(path => {
 
 assets.init();
 fs.writeFileSync('.build/manifest.json', JSON.stringify(manifest, null, 2));
+preview.init();

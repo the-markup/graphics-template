@@ -5,16 +5,16 @@ let data = new Object;
 
 module.exports = {
   init() {
-    data = this.example();
+    data = this.getCSV('example');
 
     fs.writeFileSync('.build/data.json', JSON.stringify(data));
     return data;
   },
 
-  example() {
-    const example = fs.readFileSync('./src/data/example.csv', 'utf8');
+  getCSV(source) {
+    const csv = fs.readFileSync('./src/data/' + source + '.csv', 'utf8');
 
-    data.example = csvjson.toObject(example, {
+    data[source] = csvjson.toObject(csv, {
       delimiter : ', '
     });
 

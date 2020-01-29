@@ -6,6 +6,7 @@ const html = require('./compile/html');
 const css = require('./compile/css');
 const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
+const preview = require('./preview/preview');
 
 browserSync.init({
   server: './.build',
@@ -34,4 +35,6 @@ watch('src', { recursive: true }, function(event, file) {
   } else {
     console.log('non-watchable file extension changed :' + fileExt);
   }
+
+  preview.init();
 });

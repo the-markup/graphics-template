@@ -6,7 +6,23 @@ const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
 const preview = require('./preview/preview');
 const data = require('../src/data/clean');
+const remote = require('./remote');
+const config = require('../config.json');
 const manifest = new Object;
+
+const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
+const version = new Date().getTime();
+let path;
+
+console.log(dest);
+
+if (dest === 'remote') {
+  path = `https://mrkp-wp-uploads-qednews-com-production.s3.amazonaws.com/graphics/${config.name}/${version}/`;
+} else {
+  path = 'http://localhost:5000/';
+}
+
+console.log(path);
 
 if (!fs.existsSync('.build')) {
   fs.mkdirSync('.build');
@@ -14,7 +30,7 @@ if (!fs.existsSync('.build')) {
   fs.emptyDirSync('.build');
 }
 
-html.render('src/templates/index.html', data.init());
+html.render('src/templates/index.html', {path: path, data: data.init()});
 manifest.html = 'index.html';
 
 const cssPaths = glob.sync('src/sass/*.scss');
@@ -40,3 +56,10 @@ javascriptPaths.forEach(path => {
 assets.init();
 fs.writeFileSync('.build/manifest.json', JSON.stringify(manifest, null, 2));
 preview.init();
+
+console.log(version);
+
+if (dest === 'remote') {
+  console.log(version);
+  remote.deploy(version);
+}

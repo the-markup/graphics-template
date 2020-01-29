@@ -5,12 +5,8 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# if [ "$#" -lt 1 ] ; then
-# 	echo "Usage: upload-graphics [target]"
-# 	echo "       [target] is either a path or the name of something in wp/wp-content/graphics"
-# 	exit 1
-# fi
-
+VERSION=$1
+echo $VERSION
 TARGET='./.build'
 
 if [ ! -f "$TARGET/manifest.json" ] ; then
@@ -25,7 +21,6 @@ fi
 
 S3_ACL=""
 if [ -z ${S3_UPLOADS_BUCKET+x} ]; then
-
 	# If S3_UPLOADS_BUCKET environment variable is *not* set, use a testing bucket
 	S3_UPLOADS_BUCKET="mrkp-wp-uploads-qednews-com-production"
 
@@ -39,7 +34,6 @@ if ! [ -x "$(command -v jq)" ]; then
 	exit 1
 fi
 
-VERSION=`date +%Y%m%d%H%M%S`
 UPLOAD="s3://$S3_UPLOADS_BUCKET/graphics/$TYPE/$VERSION"
 
 if [[ `aws s3 ls "$UPLOAD"` != "" ]] ; then

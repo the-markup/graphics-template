@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "node scripts/compile.js",
     "local": "npm run compile && node scripts/watch.js",
-    "deploy": "npm run compile && sh scripts/remote/upload",
+    "deploy": "npm run compile -- remote",
     "list": "sh scripts/remote/versions"
   },
   "repository": {
@@ -36,5 +36,7 @@
     "watch": "^1.0.2",
     "webpack": "^4.41.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-cmd": "^3.0.0"
+  }
 }

@@ -11,7 +11,8 @@ const preview = require('./preview/preview');
 browserSync.init({
   server: './.build',
   port: 5000,
-  open: false
+  open: false,
+  startPath: '/preview.html'
 }, browserSyncReuseTab);
 
 browserSync.watch('./.build/*.*', (event, file) => {
@@ -23,11 +24,12 @@ browserSync.watch('./.build/*.*', (event, file) => {
 watch('src', { recursive: true }, function(event, file) {
   var fileExt = file.substring(file.lastIndexOf('.') + 1);
   var isAssets = file.includes('/assets/');
+  var isData = file.includes('/data/');
 
   if (isAssets) {
     assets.init();
-  } else if (fileExt === 'html' || fileExt === 'svg') {
-    html.render(file);
+  } else if (isData || fileExt === 'html' || fileExt === 'svg') {
+    html.render('src/templates/index.html', {path: 'http://locahost:5000', data: data.init()});
   } else if (fileExt === 'scss') {
     css.render(file);
   } else if (fileExt === 'js') {

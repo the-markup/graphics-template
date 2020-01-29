@@ -14,15 +14,11 @@ const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
 const version = new Date().getTime();
 let path;
 
-console.log(dest);
-
 if (dest === 'remote') {
   path = `https://mrkp-wp-uploads-qednews-com-production.s3.amazonaws.com/graphics/${config.name}/${version}/`;
 } else {
   path = 'http://localhost:5000/';
 }
-
-console.log(path);
 
 if (!fs.existsSync('.build')) {
   fs.mkdirSync('.build');
@@ -57,9 +53,6 @@ assets.init();
 fs.writeFileSync('.build/manifest.json', JSON.stringify(manifest, null, 2));
 preview.init();
 
-console.log(version);
-
 if (dest === 'remote') {
-  console.log(version);
   remote.deploy(version);
 }

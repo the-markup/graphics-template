@@ -14,10 +14,12 @@ First, you'll want to run `npm install` to get all dependencies.
 
 If starting a new project you'll need to set a few parameters in `config.json`.
 
-| `name` | The most important setting. This determines where the interactive is uploaded to. Make sure it's something descriptive and unique |
-| `type` | Set the type of interactive. Only used to determine how to preview it locally. Options are currently: `inline` |
+| Key       | What does it do? |
+| --------- | ------------ |
+| `name`    | The most important setting. This determines where the interactive is uploaded to. Make sure it's something descriptive and unique |
+| `type`    | Set the type of interactive. Only used to determine how to preview it locally. Options are currently: `inline` |
 | `heading` | Only used for preview purposes when `type` is set to `inline` |
-| `source` | Only used for preview purposes when `type` is set to `inline` |
+| `source`  | Only used for preview purposes when `type` is set to `inline` |
 
 ## Usage
 

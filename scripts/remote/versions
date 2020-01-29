@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Usage: list-graphics [package]
+
+# see also: https://kvz.io/bash-best-practices.html
+set -o errexit
+set -o pipefail
+set -o nounset
+
+if ! [ -x "$(command -v aws)" ] ; then
+	echo "Error: you need to install the 'aws' command line tool"
+	exit 1
+fi
+
+if [ -z ${S3_UPLOADS_BUCKET+x} ]; then
+
+	# If S3_UPLOADS_BUCKET environment variable is *not* set, use a testing bucket
+	S3_UPLOADS_BUCKET="mrkp-wp-uploads-qednews-com-production"
+
+fi
+
+TYPE=`cat config.json | jq -r '.name'`
+if ! [ -x "$(command -v jq)" ]; then
+	echo "Error: You need to install the 'jq' command line tool"
+	exit 1
+fi
+
+REMOTE="s3://$S3_UPLOADS_BUCKET/graphics/$TYPE/"
+echo "Uploaded '$TYPE' versions:"
+
+aws s3 ls "$REMOTE"

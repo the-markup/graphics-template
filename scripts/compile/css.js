@@ -5,13 +5,13 @@ const logger = require('../utilities/logger');
 const pathFinder = require('../utilities/pathFinder');
 
 module.exports = {
-  renderAll() {
-    const paths = glob.sync('src/sass/*.scss');
+  renderAll(graphicName) {
+    const paths = glob.sync('src/' + graphicName + 'sass/*.scss');
     const manifest = new Array();
 
     paths.forEach(path => {
       this.render(path);
-      manifest.push(path.replace('src/sass/', '').replace('.scss', '.css'));
+      manifest.push(path.replace('src/' + graphicName + 'sass/', '').replace('.scss', '.css'));
     });
 
     return manifest;

@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const logger = require('../utilities/logger');
 
 module.exports = {
-  init() {
+  init(graphic) {
     logger.log('assets', 'transferring');
 
     if (!fs.existsSync('.build/assets')) {
@@ -11,7 +11,7 @@ module.exports = {
       fs.emptyDirSync('.build/assets');
     }
 
-    fs.copySync('src/assets', '.build/assets');
+    fs.copySync('src/' + graphic.name + '/assets', '.build/assets');
 
     logger.log('assets', 'finished')
   }

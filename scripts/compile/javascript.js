@@ -3,13 +3,13 @@ const glob = require('glob');
 const webpack = require('webpack');
 
 module.exports = {
-  renderAll() {
-    const paths = glob.sync('src/javascript/*.js');
+  renderAll(graphicName) {
+    const paths = glob.sync('src/' + graphicName + 'javascript/*.js');
     const manifest = new Array();
 
     paths.forEach(path => {
       this.render(path);
-      manifest.push(path.replace('src/javascript/', ''));
+      manifest.push(path.replace('src/' + graphicName + 'javascript/', ''));
     });
 
     return manifest;
@@ -24,7 +24,7 @@ module.exports = {
       entry: __dirname.replace('scripts/compile', '') + path,
       output: {
         path: __dirname.replace('scripts/compile', '') + '.build',
-        filename: path.replace('src/javascript/', '')
+        filename: path.replace('src/' + graphicName + 'javascript/', '')
       }
     });
 

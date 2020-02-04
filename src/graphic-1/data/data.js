@@ -12,7 +12,7 @@ module.exports = {
   },
 
   getCSV(source) {
-    const csv = fs.readFileSync('./src/data/' + source + '.csv', 'utf8');
+    const csv = fs.readFileSync('./src/graphic-1/data/' + source + '.csv', 'utf8');
 
     data[source] = csvjson.toObject(csv, {
       delimiter : ', '

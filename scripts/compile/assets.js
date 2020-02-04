@@ -5,13 +5,13 @@ module.exports = {
   init(graphic) {
     logger.log('assets', 'transferring');
 
-    if (!fs.existsSync('.build/assets')) {
-      fs.mkdirSync('.build/assets');
-    } else {
-      fs.emptyDirSync('.build/assets');
-    }
+    // if (!fs.existsSync('.build/assets')) {
+    //   fs.mkdirSync('.build/assets');
+    // } else {
+    //   fs.emptyDirSync('.build/assets');
+    // }
 
-    fs.copySync('src/' + graphic.name + '/assets', '.build/assets');
+    fs.copySync(`src/${graphic.name}/assets`, `.build/${graphic.name}/assets`);
 
     logger.log('assets', 'finished')
   }

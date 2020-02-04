@@ -13,7 +13,6 @@ module.exports = {
     const html = fs.readFileSync('src/' + graphic.name + '/templates/index.html', 'utf8');
     const data = require('../../src/' + graphic.name + '/data/data.js').init();
     const template = handlebars.compile(html);
-    fs.mkdirSync('.build/' + graphic.name);
     fs.writeFileSync('.build/' + graphic.name + '/index.html', template({ path: graphic.absPath, data: data }));
 
     logger.log('html', 'finished');

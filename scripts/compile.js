@@ -25,6 +25,8 @@ function compileGraphic(graphicName) {
     version: version
   }
 
+  fs.mkdirSync(`.build/${graphic.name}`);
+
   manifest.html = html.render(graphic);
   manifest.css = css.renderAll(graphic);
   manifest.js = javascript.renderAll(graphic);

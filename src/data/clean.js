@@ -5,7 +5,7 @@ let data = new Object;
 
 module.exports = {
   init() {
-    data = this.getCSV('example');
+    data = this.getCSV('data');
 
     fs.writeFileSync('.build/data.json', JSON.stringify(data));
     return data;

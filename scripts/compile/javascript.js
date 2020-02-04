@@ -3,19 +3,19 @@ const glob = require('glob');
 const webpack = require('webpack');
 
 module.exports = {
-  renderAll(graphicName) {
-    const paths = glob.sync('src/' + graphicName + 'javascript/*.js');
+  renderAll(graphic) {
+    const paths = glob.sync(`src/${graphic.name}/javascript/*.js`);
     const manifest = new Array();
 
     paths.forEach(path => {
-      this.render(path);
-      manifest.push(path.replace('src/' + graphicName + 'javascript/', ''));
+      this.render(path, graphic.name);
+      manifest.push(path.replace(`src/${graphic.name}/javascript/`, ''));
     });
 
     return manifest;
   },
 
-  render(path) {
+  render(path, graphicName) {
     logger.log('js', 'compiling ' + path);
     let done = false;
 
@@ -23,8 +23,8 @@ module.exports = {
       mode: 'production',
       entry: __dirname.replace('scripts/compile', '') + path,
       output: {
-        path: __dirname.replace('scripts/compile', '') + '.build',
-        filename: path.replace('src/' + graphicName + 'javascript/', '')
+        path: __dirname.replace('scripts/compile', '') + '.build/' + graphicName,
+        filename: path.replace(`src/${graphicName}/javascript/`, '')
       }
     });
 

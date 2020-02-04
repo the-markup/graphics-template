@@ -30,7 +30,7 @@ function compileGraphic(graphicName) {
   manifest.js = javascript.renderAll(graphic);
 
   assets.init(graphic);
-  fs.writeFileSync('.build/manifest.json', JSON.stringify(manifest, null, 2));
+  fs.writeFileSync(`.build/${graphic.name}/manifest.json`, JSON.stringify(manifest, null, 2));
 }
 
 compileGraphic('graphic-1');

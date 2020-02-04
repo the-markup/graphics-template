@@ -1,8 +1,20 @@
 const logger = require('../utilities/logger');
-const deasync = require('deasync');
+const glob = require('glob');
 const webpack = require('webpack');
 
 module.exports = {
+  renderAll() {
+    const paths = glob.sync('src/javascript/*.js');
+    const manifest = new Array();
+
+    paths.forEach(path => {
+      this.render(path);
+      manifest.push(path.replace('src/javascript/', ''));
+    });
+
+    return manifest;
+  },
+
   render(path) {
     logger.log('js', 'compiling ' + path);
     let done = false;

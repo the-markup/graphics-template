@@ -25,6 +25,7 @@
     "chalk": "^3.0.0",
     "csvjson": "^5.1.0",
     "deasync": "^0.1.19",
+    "decache": "^4.5.1",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "handlebars": "^4.7.2",

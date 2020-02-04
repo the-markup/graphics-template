@@ -1,9 +1,9 @@
 const handlebars = require('handlebars');
 const fs = require('fs-extra');
-const config = require('../../config.json');
 
 module.exports = {
   init() {
+    const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
     const manifest = require('../../.build/manifest.json');
     const articleTemplate = fs.readFileSync('./scripts/preview/article.html', 'utf8');
 

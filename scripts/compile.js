@@ -9,6 +9,8 @@ const pathFinder = require('./utilities/pathFinder');
 
 const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
 
+// const dest = 'remote';
+
 if (!fs.existsSync('.build')) {
   fs.mkdirSync('.build');
 } else {
@@ -17,13 +19,14 @@ if (!fs.existsSync('.build')) {
 
 function compileGraphic(graphicName) {
   const manifest = new Object;
-  const version = new Date().getTime();
 
-  const graphic = {
+  let graphic = {
     name: graphicName,
-    path: pathFinder.get(dest, version),
-    version: version
+    version: new Date().getTime()
   }
+
+  graphic.path = pathFinder.get(dest, graphic);
+  console.log(graphic.path);
 
   fs.mkdirSync(`.build/${graphic.name}`);
 
@@ -35,10 +38,17 @@ function compileGraphic(graphicName) {
   fs.writeFileSync(`.build/${graphic.name}/manifest.json`, JSON.stringify(manifest, null, 2));
 }
 
-compileGraphic('graphic-1');
-compileGraphic('graphic-2');
+const graphics = fs.readdirSync('src/');
+
+
+graphics.forEach(graphic => {
+  if(fs.statSync(`src/${graphic}`).isDirectory()) {
+    compileGraphic(graphic);
+  }
+});
+
 preview.init();
 
-if (dest === 'remote') {
-  remote.deploy(version);
-}
+// if (dest === 'remote') {
+//   remote.deploy(version);
+// }

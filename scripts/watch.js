@@ -26,9 +26,9 @@ watch('src', { recursive: true }, function(event, file) {
   const isAssets = file.includes('/assets/');
   const isData = file.includes('/data/');
 
-  const graphic = {
-    name: file.replace('src/', '').split('/')[0]
-  }
+  let graphic = new Object;
+  graphic.name = file.replace('src/', '').split('/')[0];
+  graphic.path = 'http://localhost:5000/' + graphic.name;
 
   if (isAssets) {
     assets.init(graphic);

@@ -1,5 +1,3 @@
-const config = require('../../config.json');
-
 module.exports = {
   get(env, graphic) {
     if (env && env === 'remote') {

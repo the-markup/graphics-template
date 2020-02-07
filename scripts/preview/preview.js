@@ -18,10 +18,13 @@ module.exports = {
   },
 
   graphicData(name) {
-    // ToDo: Get config.json if exists
-
     const manifest = require(`../../.build/${name}/manifest.json`);
     let graphic = new Object;
+
+    if (fs.existsSync(`src/${name}/config.json`)) {
+      graphic.config = JSON.parse(fs.readFileSync(`src/${name}/config.json`, 'utf8'));
+    }
+
     graphic.html = fs.readFileSync(`.build/${name}/index.html`, 'utf8');
 
     graphic.css = new Array;

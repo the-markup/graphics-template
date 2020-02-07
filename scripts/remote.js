@@ -1,8 +1,8 @@
 const cmd = require('node-cmd')
 
 module.exports = {
-  deploy(version) {
-    cmd.get('sh scripts/remote/deploy ' + version, (error, data) => {
+  deploy(graphic) {
+    cmd.get(`sh scripts/remote/deploy ${graphic.name} ${graphic.version}`, (error, data) => {
       if (error) {
         console.log(error);
       }

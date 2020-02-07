@@ -33,18 +33,26 @@ function compileGraphic(graphicName) {
 
   assets.init(graphic);
   fs.writeFileSync(`.build/${graphic.name}/manifest.json`, JSON.stringify(manifest, null, 2));
+
+  return graphic;
 }
 
-const graphics = fs.readdirSync('src/');
+let graphics = fs.readdirSync('src/');
 
-graphics.forEach(graphic => {
+graphics.forEach((graphic, i) => {
   if(fs.statSync(`src/${graphic}`).isDirectory()) {
-    compileGraphic(graphic);
+    graphics[i] = compileGraphic(graphic);
+  } else {
+    graphics[i] = null;
   }
 });
 
 preview.init();
 
 if (dest === 'remote') {
-  remote.deploy(version);
+  graphics = graphics.filter(Boolean);
+
+  graphics.forEach(graphic => {
+    remote.deploy(graphic);
+  });
 }

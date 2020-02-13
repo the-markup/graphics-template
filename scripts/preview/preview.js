@@ -21,9 +21,13 @@ module.exports = {
     const manifest = require(`../../.build/${name}/manifest.json`);
     let graphic = new Object;
 
+    graphic.config = new Object;
+
     if (fs.existsSync(`src/${name}/config.json`)) {
       graphic.config = JSON.parse(fs.readFileSync(`src/${name}/config.json`, 'utf8'));
     }
+
+    graphic.config.name = name;
 
     graphic.html = fs.readFileSync(`.build/${name}/index.html`, 'utf8');
 

@@ -2,16 +2,19 @@ const handlebars = require('handlebars');
 const fs = require('fs-extra');
 const glob = require('glob');
 const logger = require('../utilities/logger');
+const decache = require('decache');
 
 module.exports = {
   render(graphic) {
     logger.log('html', 'compiling...');
 
+    decache('../../src/' + graphic.name + '/data/data.js');
+    const data = require('../../src/' + graphic.name + '/data/data.js').init();
+
     this.registerHelpers();
     this.registerPartials(graphic.name);
 
     const html = fs.readFileSync('src/' + graphic.name + '/templates/index.html', 'utf8');
-    const data = require('../../src/' + graphic.name + '/data/data.js').init();
     const template = handlebars.compile(html);
     fs.writeFileSync('.build/' + graphic.name + '/index.html', template({ path: graphic.path, data: data }));
 

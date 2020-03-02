@@ -21,7 +21,7 @@ module.exports = {
     try {
       const css = sass.renderSync({
         file: path
-      }).css.toString('utf8').replace('{{ path }}', graphic.path);
+      }).css.toString('utf8').replace(/{{ path }}/g, graphic.path);
 
       const fileName = path.replace(/^.*[\\\/]/, '').replace('.scss', '');
 

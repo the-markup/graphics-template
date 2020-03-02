@@ -5,6 +5,7 @@ const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
 const preview = require('./preview/preview');
 const remote = require('./remote');
+const inquirer = require('inquirer');
 const pathFinder = require('./utilities/pathFinder');
 
 const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
@@ -47,7 +48,27 @@ function compileGraphic(graphicName) {
 
 let graphics = fs.readdirSync('src/');
 
-console.log(graphics);
+if (dest === 'remote') {
+  let answering = true;
+  graphics.unshift('All Graphics');
+  inquirer.prompt([{
+    type: 'rawlist',
+    name: 'graphics',
+    message: 'Select a Graphic to Deploy',
+    choices: graphics
+  }]).then(answers => {
+    if (answers.graphics === 'All Graphics') {
+      graphics = fs.readdirSync('src/');
+    } else {
+      graphics = [ answers.graphics ]
+    }
+    answering = false;
+  }).catch(error => {
+    console.log(error);
+  });
+
+  require('deasync').loopWhile(function(){return answering;});
+}
 
 graphics.forEach((graphic, i) => {
   graphics[i] = compileGraphic(graphic);

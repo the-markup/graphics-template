@@ -1,4 +1,4 @@
-const cmd = require('node-cmd')
+const cmd = require('node-cmd');
 
 module.exports = {
   deploy(graphic) {

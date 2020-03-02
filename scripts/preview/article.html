@@ -299,9 +299,6 @@
         Copy Link
     </span>
 </a>
-          
-
-          
             
               <a  class='button  article-meta__button js-open-republisher' >
     <span class='button__label button__label--main'>
@@ -317,7 +314,7 @@
 
       {{#each this}}
          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Quisque id diam vel quam elementum pulvinar etiam non. Feugiat in fermentum posuere urna nec tincidunt. Phasellus faucibus scelerisque eleifend donec pretium. Quam nulla porttitor massa id neque aliquam. Pellentesque id nibh tortor id aliquet lectus proin nibh. Vulputate odio ut enim blandit. Sed odio morbi quis commodo odio aenean. Risus feugiat in ante metus. Id diam vel quam elementum pulvinar etiam non. Nisi quis eleifend quam adipiscing vitae proin sagittis. Tortor aliquam nulla facilisi cras fermentum. Mattis vulputate enim nulla aliquet porttitor. Purus gravida quis blandit turpis cursus in hac habitasse. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Faucibus in ornare quam viverra orci sagittis eu. Ipsum consequat nisl vel pretium lectus quam id leo. Quis risus sed vulputate odio ut enim blandit.</p>
-         <div class="graphics graphics--{{ config.name }}">
+         <div class="graphics graphics--{{ config.name }} {{#if config.align }}graphics--{{ config.align }}{{/if}}">
             {{#if config.heading }}
                <h3 class="graphics__heading">{{ config.heading }} </h3>
             {{/if}}

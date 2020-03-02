@@ -14,7 +14,7 @@ module.exports = {
 
     const articleTemplate = fs.readFileSync('./scripts/preview/article.html', 'utf8');
     const template = handlebars.compile(articleTemplate, data);
-    fs.writeFileSync('.build/preview.html', template(data));
+    fs.writeFileSync('.build/index.html', template(data));
   },
 
   graphicData(name) {

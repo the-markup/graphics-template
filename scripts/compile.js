@@ -16,6 +16,14 @@ if (!fs.existsSync('.build')) {
 }
 
 function compileGraphic(graphicName) {
+  if (graphicName.indexOf(' ') >= 0) {
+    console.log('A space was found in', graphicName, 'please rename without spaces');
+    return false;
+  } else if(!fs.statSync(`src/${graphicName}`).isDirectory()) {
+    console.log('Folder for', graphicName, 'was not found');
+    return false;
+  }
+
   const manifest = new Object;
 
   let graphic = {
@@ -39,12 +47,10 @@ function compileGraphic(graphicName) {
 
 let graphics = fs.readdirSync('src/');
 
+console.log(graphics);
+
 graphics.forEach((graphic, i) => {
-  if(fs.statSync(`src/${graphic}`).isDirectory()) {
-    graphics[i] = compileGraphic(graphic);
-  } else {
-    graphics[i] = null;
-  }
+  graphics[i] = compileGraphic(graphic);
 });
 
 preview.init();

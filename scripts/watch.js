@@ -12,7 +12,7 @@ browserSync.init({
   server: './.build',
   port: 5000,
   open: false,
-  startPath: '/preview.html'
+  startPath: '/index.html'
 }, browserSyncReuseTab);
 
 browserSync.watch('./.build/*.*', (event, file) => {

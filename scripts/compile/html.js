@@ -8,8 +8,14 @@ module.exports = {
   render(graphic) {
     logger.log('html', 'compiling...');
 
-    decache('../../src/' + graphic.name + '/data/data.js');
-    const data = require('../../src/' + graphic.name + '/data/data.js').init();
+    let data;
+
+    if (fs.existsSync('./src/' + graphic.name + '/data/data.js')) {
+      decache('../../src/' + graphic.name + '/data/data.js');
+      data = require('../../src/' + graphic.name + '/data/data.js').init();
+    } else {
+      data = new Object;
+    }
 
     this.registerHelpers();
     this.registerPartials(graphic.name);

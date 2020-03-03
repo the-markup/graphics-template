@@ -38,7 +38,7 @@ module.exports = {
 
     graphic.js = new Array;
     manifest.js.forEach(script => {
-      graphic.js.push(fs.readFileSync(`.build/${name}/${script}`, 'utf8'));
+      graphic.js.push(`/${name}/${script}`);
     });
 
     return graphic;

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graphics Preview</title>
     <meta name="description" content="Google’s black box algorithm controls which political emails land in your main inbox. For 2020 presidential candidates, the differences are stark." />
-    <link rel="stylesheet" href="https://mrkp-static-production.themarkup.org/static/dist/main.5a264bad.css">
+    <link rel="stylesheet" href="https://mrkp-static-production.themarkup.org/static/dist/main.36178458.css">
     <link rel="shortcut icon" href="https://mrkp-static-production.themarkup.org/static/img/social-icons/favicon.png" />
     <link rel="apple-touch-icon" href="https://mrkp-static-production.themarkup.org/static/img/social-icons/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" href="/feeds/rss.xml" />
@@ -317,6 +317,9 @@
          <div class="graphics graphics--{{ config.name }} {{#if config.align }}graphics--{{ config.align }}{{/if}}">
             {{#if config.heading }}
                <h3 class="graphics__heading">{{ config.heading }} </h3>
+            {{/if}}
+            {{#if config.subhead }}
+              <h4 class="graphics__subheading">{{ config.subhead }}</h4>
             {{/if}}
             <div class="graphics__content">
             {{{ html }}}

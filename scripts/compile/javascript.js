@@ -19,14 +19,20 @@ module.exports = {
     logger.log('js', 'compiling ' + path);
     let done = false;
 
-    console.log(graphic);
-
     const compiler = webpack({
       mode: graphic.dest == 'remote' ? 'production' : 'development',
       entry: __dirname.replace('scripts/compile', '') + path,
       output: {
         path: __dirname.replace('scripts/compile', '') + '.build/' + graphic.name,
         filename: path.replace(`src/${graphic.name}/javascript/`, '')
+      },
+      module: {
+        rules: [
+          {
+            test: /\.handlebars$/,
+            loader: 'handlebars-loader'
+          }
+        ]
       }
     });
 

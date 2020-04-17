@@ -47,7 +47,11 @@ function compileGraphic(graphicName) {
   return graphic;
 }
 
-let graphics = fs.readdirSync('src/');
+let graphics = fs.readdirSync('src/', { withFileTypes: true})
+  .filter(dirent => dirent.isDirectory())
+  .map(dirent => dirent.name);
+
+console.log(graphics);
 
 if (dest === 'remote') {
   let answering = true;

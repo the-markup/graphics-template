@@ -1,3 +1,3 @@
-import handlebars from 'handlebars';
+import example from './modules/example';
 
-console.log('hello');
+example.init();

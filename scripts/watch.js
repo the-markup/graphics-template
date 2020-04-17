@@ -29,6 +29,7 @@ watch('src', { recursive: true }, function(event, file) {
   let graphic = new Object;
   graphic.name = file.replace('src/', '').split('/')[0];
   graphic.path = 'http://localhost:5000/' + graphic.name;
+  graphic.dest = 'local';
 
   if (isAssets) {
     assets.init(graphic);

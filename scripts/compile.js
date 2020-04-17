@@ -29,7 +29,8 @@ function compileGraphic(graphicName) {
 
   let graphic = {
     name: graphicName,
-    version: new Date().getTime()
+    version: new Date().getTime(),
+    dest: dest
   }
 
   graphic.path = pathFinder.get(dest, graphic);

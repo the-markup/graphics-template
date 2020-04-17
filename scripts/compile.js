@@ -51,8 +51,6 @@ let graphics = fs.readdirSync('src/', { withFileTypes: true})
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
-console.log(graphics);
-
 if (dest === 'remote') {
   let answering = true;
   graphics.unshift('All Graphics');

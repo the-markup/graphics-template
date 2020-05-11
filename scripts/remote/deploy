@@ -22,7 +22,7 @@ fi
 S3_ACL=""
 if [ -z ${S3_UPLOADS_BUCKET+x} ]; then
 	# If S3_UPLOADS_BUCKET environment variable is *not* set, use a testing bucket
-	S3_UPLOADS_BUCKET="mrkp-wp-uploads-themarkup-org-staging"
+	S3_UPLOADS_BUCKET="mrkp-wp-uploads-themarkup-org-production"
 
 	# For testing purposes, where there is no CDN fronting the S3 bucket
 	S3_ACL="--acl public-read"

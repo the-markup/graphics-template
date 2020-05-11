@@ -3,6 +3,7 @@ const html = require('./compile/html');
 const css = require('./compile/css');
 const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
+const screenshot = require('./compile/screenshot');
 const preview = require('./preview/preview');
 const remote = require('./remote');
 const inquirer = require('inquirer');
@@ -41,6 +42,10 @@ function compileGraphic(graphicName) {
   manifest.css = css.renderAll(graphic);
   manifest.js = javascript.renderAll(graphic);
 
+  if (dest === 'remote') {
+    manifest.fallback = screenshot.take(graphic);
+  }
+
   assets.init(graphic);
   fs.writeFileSync(`.build/${graphic.name}/manifest.json`, JSON.stringify(manifest, null, 2));
 
@@ -51,7 +56,7 @@ let graphics = fs.readdirSync('src/', { withFileTypes: true})
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
-if (dest === 'remote') {
+if (dest === 'remote' && graphics.length > 1) {
   let answering = true;
   graphics.unshift('All Graphics');
   inquirer.prompt([{

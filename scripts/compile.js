@@ -43,7 +43,7 @@ function compileGraphic(graphicName) {
   manifest.js = javascript.renderAll(graphic);
 
   if (dest === 'remote') {
-    manifest.fallback = screenshot.take(graphic);
+    manifest.fallback = 'fallback.png'; // fallback image gets taken once the all graphics are built
   }
 
   assets.init(graphic);
@@ -88,6 +88,7 @@ if (dest === 'remote') {
   graphics = graphics.filter(Boolean);
 
   graphics.forEach(graphic => {
+    screenshot.take(graphic);
     remote.deploy(graphic);
   });
 }

@@ -4,21 +4,27 @@ const logger = require('../utilities/logger');
 
 module.exports = {
   take(graphic) {
-    logger.log('fallback', 'Starting browser...');
+    let isDone = false;
+    logger.log('fallback', 'Taking screenshot...');
 
-    puppeteer.launch().then(browser => {
-      browser.newPage().then(page => {
-        page.goto('http://localhost:5000/index.html').then(response => {
-          page.$('.graphics--' + graphic.name + ' .graphics__content').then(graphicEl => {
-            graphicEl.screenshot().then(image => {
-              fs.writeFileSync('./.build/' + graphic.name + '/fallback.png', image);
-              logger.log('fallback', 'Screenshot of graphic saved');
-              browser.close();
-              return 'fallback.png';
-            });
-          })
-        })
-      })
-    });
+    (async () => {
+      let browser = await puppeteer.launch();
+      let page = await browser.newPage();
+      const html = fs.readFileSync('.build/index.html', 'utf8');
+      await page.setContent(html);
+
+      let el = await page.$(`.graphics--${graphic.name} .graphics__content`);
+      let image = await el.screenshot();
+
+      fs.writeFileSync('./.build/' + graphic.name + '/fallback.png', image);
+
+      await page.close();
+      await browser.close();
+
+      isDone = true;
+    })();
+
+    require('deasync').loopWhile(function(){return !isDone;});
+    logger.log('fallback', 'Screenshot of graphic saved');
   }
 }

@@ -12,6 +12,11 @@ module.exports = {
       // create browser
       let browser = await puppeteer.launch();
       let page = await browser.newPage();
+          page.setViewport({
+            deviceScaleFactor: 2,
+            width: 1920,
+            height: 1080
+          });
 
       // load preview html file
       let html = fs.readFileSync('./.build/index.html', 'utf8');

@@ -1,6 +1,16 @@
 # The Markup Graphics Template
 
-Structure and scripts for developing and deploying graphics on The Markup. To use, duplicate into a project specific repo. Only commit changes to this that you want to be reflected in future graphics.
+Structure and scripts for developing and deploying graphics on The Markup. 
+
+## Philosophy Behind The Template
+
+This template is a framework and structure for a collection of graphics. The concept is that for every story or project, this repository is duplicated into a project specific repo to get things started. As a result, only commit changes to this repo if you want them reflected in all graphics repos going forward.
+
+If everything works correctly you can ignore the `scripts` folder (a series of Node scripts that compile, watch and deploy). The `src` folder is where the source files for your graphic, or if you have more than one graphics, live.
+
+An individual graphic's source files are made up of Handlebars templates, SCSS files, and an ES6 Webpack app. There is also an optional `data/data.js` file which is an optional node script you can modify on a graphic-by-graphic basis to pass in different data to the Handlebars template. This can be used in different ways. It could be something simple like importing a csv file and cleaning it up for the frontend. Alternatively, it could be running `JSDOM` and `D3` to precompile more complex graphics so that the client isn't burdened with this.
+
+The philosophy here is that everything should be as light and as simple as possible for the client. Which is why, to date, we don't run Vue or React and we try to avoid sending big libraries like D3 in a bundled app. This is reflected in how The Markup's CMS expects graphics to be delivered, which is a series of static files on S3 – all something taken care of when you run `npm run deploy` from this repo.
 
 ## Requirements
 

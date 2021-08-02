@@ -32,15 +32,7 @@ module.exports = {
   registerHelpers() {
     handlebars.registerHelper('handlise', string => {
       return string.toLowerCase().replace(/ /g, '-');
-    });
-
-    handlebars.registerHelper('if_eq', function(a, b, opts) {
-        if (a == b) {
-            return opts.fn(this);
-        } else {
-            return opts.inverse(this);
-        }
-    });
+    })
   },
 
   registerPartials(graphicName) {

@@ -1,0 +1,23 @@
+<div id="metro-differential__container">
+    <div id="metro-differential__header">
+        Based on an analysis of 
+        <span id="metro-differential__app-count">4,800+ mortgage applicants</span>
+        from 
+        <span id="metro-differential__metro-select-pre">across</span>
+        <select id="metro-differential__metro-select">
+            {{#each data}}
+            <option value='{{ name }}' {{#if_eq name 'the United States' }}selected{{/if_eq}}>{{ name }}</option>
+            {{/each}}
+        </select>
+        <span id="metro-differential__metro-select-post"></span>
+    </div>
+    
+    <link rel="stylesheet" type="text/css" href="https://propublica.github.io/weepeople/weepeople.css"/>
+    <div id="metro-differential__graphic">
+    </div>
+    
+    <div id="metro-differential__footer">
+        <p id="metro-differential__inconclusive"></p>
+        <p id="metro-differential__inconclusive-note">Unreliable findings include results that were not statistically significant, that did not have sufficient applications, or there was a lack of variance in certain variables.</p>
+    </div>
+</div>

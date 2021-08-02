@@ -1,0 +1,51 @@
+﻿Race/Ethnicity,reason,reason_count,total_denials,reason_rate
+White,Exempt,5726,119182,4.804416774
+Black,Exempt,722,20545,3.514237041
+Latino,Exempt,627,30440,2.05978975
+AAPI,Exempt,240,19782,1.213224143
+Native American,Exempt,90,1415,6.360424028
+White,DTI Ratio,39021,119182,32.74068232
+Latino,DTI Ratio,11074,30440,36.37976347
+AAPI,DTI Ratio,8227,19782,41.58831261
+Black,DTI Ratio,7243,20545,35.25431979
+Native American,DTI Ratio,474,1415,33.49823322
+White,Other,14407,119182,12.0882348
+Latino,Other,4522,30440,14.85545335
+AAPI,Other,2860,19782,14.45758771
+Black,Other,2646,20545,12.879046
+Native American,Other,178,1415,12.5795053
+White,Credit History,24911,119182,20.90164622
+Black,Credit History,6681,20545,32.51886104
+Latino,Credit History,6498,30440,21.34691196
+AAPI,Credit History,2386,19782,12.06147002
+Native American,Credit History,522,1415,36.89045936
+White,Insufficient Cash,11704,119182,9.820274874
+Latino,Insufficient Cash,3232,30440,10.61760841
+AAPI,Insufficient Cash,2431,19782,12.28894955
+Black,Insufficient Cash,2063,20545,10.0413726
+Native American,Insufficient Cash,150,1415,10.60070671
+White,Collateral,22322,119182,18.72933832
+Latino,Collateral,5499,30440,18.06504599
+Black,Collateral,3243,20545,15.7848625
+AAPI,Collateral,2678,19782,13.5375594
+Native American,Collateral,183,1415,12.93286219
+White,Employment History,4820,119182,4.044234868
+Latino,Employment History,1431,30440,4.701051248
+AAPI,Employment History,1092,19782,5.520169851
+Black,Employment History,717,20545,3.489900219
+Native American,Employment History,56,1415,3.957597173
+White,Unverifiable Information,9324,119182,7.823329026
+Latino,Unverifiable Information,3098,30440,10.17739816
+AAPI,Unverifiable Information,2660,19782,13.44656759
+Black,Unverifiable Information,1360,20545,6.619615478
+Native American,Unverifiable Information,77,1415,5.441696113
+White,Credit Application Incomplete,14680,119182,12.31729624
+Latino,Credit Application Incomplete,2709,30440,8.899474376
+AAPI,Credit Application Incomplete,2563,19782,12.95622283
+Black,Credit Application Incomplete,1687,20545,8.211243612
+Native American,Credit Application Incomplete,133,1415,9.399293286
+White, Mortgage Insurance Denied,442,119182,0.370861372
+Latino, Mortgage Insurance Denied,154,30440,0.505913272
+Black, Mortgage Insurance Denied,94,20545,0.457532246
+AAPI, Mortgage Insurance Denied,55,19782,0.278030533
+Native American, Mortgage Insurance Denied,3,1415,0.212014134

@@ -20,7 +20,7 @@
   },
   "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
   "dependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.27.5",
     "browser-sync-reuse-tab": "^1.0.3",
     "chalk": "^3.0.0",
     "csvjson": "^5.1.0",
@@ -28,7 +28,7 @@
     "decache": "^4.5.1",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
-    "handlebars": "^4.7.2",
+    "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.1",
     "inquirer": "^7.0.5",
     "node-sass": "^5.0.0",

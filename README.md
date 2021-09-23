@@ -1,6 +1,6 @@
 # The Markup Graphics Template
 
-Structure and scripts for developing and deploying graphics on The Markup. 
+Structure and scripts for developing and deploying graphics on The Markup.
 
 ## Philosophy Behind The Template
 
@@ -14,13 +14,14 @@ The philosophy here is that everything should be as light and as simple as possi
 
 ## Requirements
 
-- [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) 
+- [node.js](https://nodejs.org/)
+- [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 - [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/install-macos.html#install-bundle-macos)
 - [jq](https://stedolan.github.io/jq/download/)
 
 ## Setting up your graphic
 
-First, you'll want to run `npm install` to get all dependencies.
+First, you'll want to run `nvm use` and then `npm install` to use the right version of `node` and install dependencies.
 
 If starting a new project you'll need to set a few parameters in `config.json`.
 
@@ -54,4 +55,3 @@ There are two main sections to the template, represented by the two root level f
 | `javascript` | Javascript compiled using webpack sits in here. Any js files placed in the root of this folder will export as a unique javascript file. Any js files placed in newly created folders will be ignored but can imported through a root level js file. |
 | `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together but like javascript you can export multiple css files by having multiple root level files here |
 | `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated but you can reference other html files placed in here as includes. |
-

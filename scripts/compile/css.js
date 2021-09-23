@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const sass = require('node-sass');
+const sass = require('sass');
 const glob = require('glob');
 const logger = require('../utilities/logger');
 

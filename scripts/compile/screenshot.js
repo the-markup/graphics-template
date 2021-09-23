@@ -2,46 +2,48 @@ const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
 const logger = require('../utilities/logger');
 const pathFinder = require('../utilities/pathfinder');
+const handler = require('serve-handler');
+const http = require('http');
+const terminator = require('http-terminator');
 
 module.exports = {
-  take(graphic) {
-    let isDone = false;
-    logger.log('fallback', 'Taking screenshot...');
+	async take(graphic) {
 
-    (async () => {
-      // create browser
-      let browser = await puppeteer.launch();
-      let page = await browser.newPage();
-          page.setViewport({
-            deviceScaleFactor: 2,
-            width: 1920,
-            height: 1080
-          });
+		logger.log('fallback', 'Taking screenshot...');
 
-      // load preview html file
-      let html = fs.readFileSync('./.build/index.html', 'utf8');
+		const server = http.createServer((request, response) => {
+			return handler(request, response, {
+				public: './.build'
+			});
+		});
+		server.listen(5000);
 
-      // replace paths with local versions
-      const regEx = new RegExp(graphic.path, 'g');
-      html = html.replace(regEx, pathFinder.get('local', graphic));
+		let browser = await puppeteer.launch();
+		let page = await browser.newPage();
+		page.setViewport({
+			deviceScaleFactor: 2,
+			width: 1920,
+			height: 1080
+		});
 
-      // load html in browser
-      await page.setContent(html);
+		let html = fs.readFileSync('./.build/index.html', 'utf8');
+		const regEx = new RegExp(graphic.path, 'g');
+		html = html.replace(regEx, pathFinder.get('local', graphic));
+		await page.setContent(html, {
+			waitUntil: 'load'
+		});
 
-      // take screenshot
-      let el = await page.$(`.graphics--${graphic.name} .graphics__content`);
-      let image = await el.screenshot();
+		let el = await page.$(`.graphics--${graphic.name} .graphics__content`);
+		let image = await el.screenshot();
 
-      // save screenshot
-      fs.writeFileSync('./.build/' + graphic.name + '/fallback.png', image);
+		fs.writeFileSync('./.build/' + graphic.name + '/fallback.png', image);
 
-      await page.close();
-      await browser.close();
+		await page.close();
+		await browser.close();
 
-      isDone = true;
-    })();
+		logger.log('fallback', 'Screenshot of graphic saved');
 
-    require('deasync').loopWhile(function(){return !isDone;});
-    logger.log('fallback', 'Screenshot of graphic saved');
-  }
-}
+		const httpTerminator = terminator.createHttpTerminator({ server, });
+		await httpTerminator.terminate();
+	}
+};

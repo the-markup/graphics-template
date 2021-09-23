@@ -87,8 +87,8 @@ preview.init();
 if (dest === 'remote') {
   graphics = graphics.filter(Boolean);
 
-  graphics.forEach(graphic => {
-    screenshot.take(graphic);
+  graphics.forEach(async graphic => {
+    await screenshot.take(graphic);
     remote.deploy(graphic);
   });
 }

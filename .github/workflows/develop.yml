@@ -25,6 +25,8 @@ jobs:
       with:
         node-version: '14.17.3'
 
+    - run: npm install
+
     - run: npm run deploy -- staging
       env:
         AWS_PROFILE: "default"

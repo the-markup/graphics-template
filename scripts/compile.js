@@ -7,7 +7,7 @@ const screenshot = require('./compile/screenshot');
 const preview = require('./preview/preview');
 const remote = require('./remote');
 const inquirer = require('inquirer');
-const pathFinder = require('./utilities/pathFinder');
+const pathFinder = require('./utilities/pathfinder');
 
 const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
 
@@ -21,7 +21,7 @@ function compileGraphic(graphicName) {
   if (graphicName.indexOf(' ') >= 0) {
     console.log('A space was found in', graphicName, 'please rename without spaces');
     return false;
-  } else if(!fs.statSync(`src/${graphicName}`).isDirectory()) {
+  } else if (!fs.statSync(`src/${graphicName}`).isDirectory()) {
     console.log('Folder for', graphicName, 'was not found');
     return false;
   }
@@ -52,7 +52,7 @@ function compileGraphic(graphicName) {
   return graphic;
 }
 
-let graphics = fs.readdirSync('src/', { withFileTypes: true})
+let graphics = fs.readdirSync('src/', { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
@@ -68,14 +68,14 @@ if (dest === 'remote' && graphics.length > 1) {
     if (answers.graphics === 'All Graphics') {
       graphics = fs.readdirSync('src/');
     } else {
-      graphics = [ answers.graphics ]
+      graphics = [answers.graphics]
     }
     answering = false;
   }).catch(error => {
     console.log(error);
   });
 
-  require('deasync').loopWhile(function(){return answering;});
+  require('deasync').loopWhile(function () { return answering; });
 }
 
 graphics.forEach((graphic, i) => {

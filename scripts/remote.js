@@ -9,7 +9,7 @@ module.exports = {
 			bucket = 'mrkp-wp-uploads-themarkup-org-staging';
 		}
 		const env = `AWS_PROFILE="${profile}" S3_UPLOADS_BUCKET="${bucket}"`;
-		cmd.get(`${env} sh scripts/remote/deploy ${graphic_name} ${graphic.version}`, (error, data) => {
+		cmd.get(`${env} bash scripts/remote/deploy ${graphic_name} ${graphic.version}`, (error, data) => {
 			if (error) {
 				console.log(error);
 			}

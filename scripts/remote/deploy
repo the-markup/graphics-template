@@ -5,17 +5,19 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-DEST_NAME=$1
+GRAPHIC_NAME=$1
 VERSION=$2
-SRC_NAME=$3
+REPO_NAME=$3
 TARGET='./.build'
 
-if [ -z ${SRC_NAME+x} ]; then 
-	SRC_NAME=${DEST_NAME}
+DEST_NAME="${GRAPHIC_NAME}"
+
+if [ -n "${REPO_NAME}" ]; then
+	DEST_NAME="${REPO_NAME}_${GRAPHIC_NAME}"
 fi
 
-if [ ! -f "$TARGET/$SRC_NAME/manifest.json" ] ; then
-	echo "Error: could not find '$TARGET/$SRC_NAME/manifest.json'"
+if [ ! -f "$TARGET/$GRAPHIC_NAME/manifest.json" ] ; then
+	echo "Error: could not find '$TARGET/$GRAPHIC_NAME/manifest.json'"
 	exit 1
 fi
 
@@ -42,6 +44,6 @@ if [[ `aws s3 ls "$UPLOAD"` != "" ]] ; then
 	exit 1
 fi
 
-echo "Uploading '$SRC_NAME' to $UPLOAD"
-aws s3 sync "$TARGET/$SRC_NAME" "$UPLOAD"
+echo "Uploading '$GRAPHIC_NAME' to $UPLOAD"
+aws s3 sync "$TARGET/$GRAPHIC_NAME" "$UPLOAD"
 echo "Published '$DEST_NAME' version '$VERSION'"

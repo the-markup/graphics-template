@@ -56,7 +56,10 @@ let graphics = fs.readdirSync('src/', { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
-if (dest === 'remote' && graphics.length > 1) {
+if (process.env.GITHUB_REPOSITORY) {
+  graphics = fs.readdirSync('src/')
+}
+else if (dest === 'remote' && graphics.length > 1) {
   let answering = true;
   graphics.unshift('All Graphics');
   inquirer.prompt([{

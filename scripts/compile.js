@@ -56,6 +56,12 @@ let graphics = fs.readdirSync('src/', { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
+if (graphics.length > 1 && process.env.GITHUB_REPOSITORY) {
+  console.log("Error: autodeploy only supports on graphic per repo")
+  return false;
+}
+
+
 if (dest === 'remote' && graphics.length > 1) {
   let answering = true;
   graphics.unshift('All Graphics');

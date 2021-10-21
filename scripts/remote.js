@@ -8,8 +8,14 @@ module.exports = {
 		if (process.argv.indexOf('staging') > -1) {
 			bucket = 'mrkp-wp-uploads-themarkup-org-staging';
 		}
-		const env = `AWS_PROFILE="${profile}" S3_UPLOADS_BUCKET="${bucket}"`;
-		cmd.get(`${env} bash scripts/remote/deploy ${graphic.name} ${graphic.version} ${repo_name}`, (error, data) => {
+		var env = `S3_UPLOADS_BUCKET="${bucket}"`;
+
+		// if this is part of the github autodeploy don't set the profile
+		if (!repo_name) {
+			env = `${env} AWS_PROFILE="${profile}"`
+		}
+
+		cmd.get(`${env} bash scripts / remote / deploy ${graphic.name} ${graphic.version} ${repo_name} `, (error, data) => {
 			if (error) {
 				console.log(error);
 			}

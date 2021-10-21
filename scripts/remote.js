@@ -15,7 +15,7 @@ module.exports = {
 			env = `${env} AWS_PROFILE="${profile}"`
 		}
 
-		cmd.get(`${env} bash scripts / remote / deploy ${graphic.name} ${graphic.version} ${repo_name} `, (error, data) => {
+		cmd.get(`${env} bash scripts/remote/deploy ${graphic.name} ${graphic.version} ${repo_name} `, (error, data) => {
 			if (error) {
 				console.log(error);
 			}

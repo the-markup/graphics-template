@@ -1,0 +1,32 @@
+name: "Trigger Manual Deploy to Production"
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Upload to Amazon S3
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@9e1405074160aa259ccddd6ba2520c8cfe6fbefa
+        with:
+          role-to-assume: arn:aws:iam::183122854331:role/github-graphics-production-upload
+          aws-region: us-east-1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.17.3"
+
+      - run: npm install
+
+      - run: npm run deploy

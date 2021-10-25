@@ -5,12 +5,19 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-NAME=$1
+GRAPHIC_NAME=$1
 VERSION=$2
+REPO_NAME=$3
 TARGET='./.build'
 
-if [ ! -f "$TARGET/$NAME/manifest.json" ] ; then
-	echo "Error: could not find '$TARGET/$NAME/manifest.json'"
+DEST_NAME="${GRAPHIC_NAME}"
+
+if [ -n "${REPO_NAME}" ]; then
+	DEST_NAME="${REPO_NAME}_${GRAPHIC_NAME}"
+fi
+
+if [ ! -f "$TARGET/$GRAPHIC_NAME/manifest.json" ] ; then
+	echo "Error: could not find '$TARGET/$GRAPHIC_NAME/manifest.json'"
 	exit 1
 fi
 
@@ -29,7 +36,7 @@ if [ -z ${AWS_PROFILE+x} ]; then
 	AWS_PROFILE="operations_prod"
 fi
 
-UPLOAD="s3://$S3_UPLOADS_BUCKET/graphics/$NAME/$VERSION"
+UPLOAD="s3://$S3_UPLOADS_BUCKET/graphics/$DEST_NAME/$VERSION"
 
 if [[ `aws s3 ls "$UPLOAD"` != "" ]] ; then
 	# Somehow this upload type/version already exists, something went wrong
@@ -37,6 +44,6 @@ if [[ `aws s3 ls "$UPLOAD"` != "" ]] ; then
 	exit 1
 fi
 
-echo "Uploading '$NAME' to $UPLOAD"
-aws s3 sync "$TARGET/$NAME" "$UPLOAD"
-echo "Published '$NAME' version '$VERSION'"
+echo "Uploading '$GRAPHIC_NAME' to $UPLOAD"
+aws s3 sync "$TARGET/$GRAPHIC_NAME" "$UPLOAD"
+echo "Published '$DEST_NAME' version '$VERSION'"

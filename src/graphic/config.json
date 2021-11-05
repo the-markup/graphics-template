@@ -3,5 +3,6 @@
   "subhead": "Yes that's right the graphic",
   "source": "The Markup",
   "align": "none",
-  "bespoke": false
+  "bespoke": false,
+  "auto_screenshot": true
 }

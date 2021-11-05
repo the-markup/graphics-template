@@ -35,6 +35,11 @@ function compileGraphic(graphicName) {
   }
 
   graphic.path = pathFinder.get(dest, graphic);
+  //append config options to check if screenshot must be taken
+  graphic.config = new Object;
+  if (fs.existsSync(`src/${graphicName}/config.json`)) {
+    graphic.config = JSON.parse(fs.readFileSync(`src/${graphicName}/config.json`, 'utf8'));
+  }
 
   fs.mkdirSync(`.build/${graphic.name}`);
 
@@ -91,7 +96,14 @@ if (dest === 'remote') {
   graphics = graphics.filter(Boolean);
 
   graphics.forEach(async graphic => {
-    await screenshot.take(graphic);
+    //check if a screenshot should be taken
+    if (graphic.config.auto_screenshot) {
+      await screenshot.take(graphic, i);
+    }
+
+    //remove the config options before deploy
+    delete graphic.config;
+
     remote.deploy(graphic);
   });
 }

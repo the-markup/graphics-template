@@ -5,7 +5,13 @@ module.exports = {
 			if (process.argv.indexOf('staging') > -1) {
 				hostname = 'mrkp-static-staging.themarkup.org';
 			}
-			return `https://${hostname}/graphics/${graphic.name}/${graphic.version}`;
+
+			var repo = ""
+			if (process.env.GITHUB_REPOSITORY) {
+				repo_name = `${process.env.GITHUB_REPOSITORY}/`
+			}
+
+			return `https://${hostname}/graphics/${repo_name}${graphic.name}/${graphic.version}`;
 		} else {
 			return `http://localhost:5000/${graphic.name}`;
 		}

@@ -8,7 +8,7 @@ module.exports = {
 
 			var repo_name = "";
 			if (process.env.GITHUB_REPOSITORY) {
-				repo_name = `${process.env.GITHUB_REPOSITORY}_`;
+				repo_name = `${process.env.GITHUB_REPOSITORY.replace("the-markup/graphics-", "")}_`;
 			}
 
 			return `https://${hostname}/graphics/${repo_name}${graphic.name}/${graphic.version}`;

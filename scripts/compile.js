@@ -98,7 +98,7 @@ if (dest === 'remote') {
   graphics.forEach(async graphic => {
     //check if a screenshot should be taken
     if (graphic.config.auto_screenshot) {
-      await screenshot.take(graphic, i);
+      await screenshot.take(graphic);
     }
 
     //remove the config options before deploy

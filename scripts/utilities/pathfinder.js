@@ -6,9 +6,9 @@ module.exports = {
 				hostname = 'mrkp-static-staging.themarkup.org';
 			}
 
-			var repo = ""
+			var repo = "";
 			if (process.env.GITHUB_REPOSITORY) {
-				repo_name = `${process.env.GITHUB_REPOSITORY}/`
+				repo_name = `${process.env.GITHUB_REPOSITORY}/`;
 			}
 
 			return `https://${hostname}/graphics/${repo_name}${graphic.name}/${graphic.version}`;

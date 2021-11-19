@@ -22,7 +22,7 @@ The rest of the commands assume you are in the newly cloned + renamed folder.
 
 ## Create a new GitHub repo
 
-1. [Create a fresh GitHub repo](https://github.com/new) in `the-markup` organization
+1. [Create a fresh GitHub repo](https://github.com/new) in `the-markup` organization, with `graphics-` in the beginning of the name (required for the security settings to work properly)
 2. Copy the repository URL (something like `git@github.com...`)
 3. Update your newly cloned graphic to use that repo URL
 

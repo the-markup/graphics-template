@@ -84,7 +84,7 @@ Check which version of node.js you have installed:
 node --version
 ```
 
-If you're not using v14, yo ucan use [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating) to download/install it. In the process of installing, you'll be asked to adjust your `.bashrc` or  `.zshrc` file, and then once you open a new terminal window you should be able to download and activate a new version of node.js like this (using the version configured in the `.nvmrc` file):
+If you're not using v14, yo ucan use [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating) to download/install it. In the process of installing `nvm`, you'll be asked to adjust your `.bashrc` or  `.zshrc` file. Once you open a new terminal window, you should be able to download and activate a new version of node.js like this (using the version configured in the `.nvmrc` file):
 
 ```
 cd graphics-2021-blobs

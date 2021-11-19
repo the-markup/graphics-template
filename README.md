@@ -44,6 +44,10 @@ Push your freshly copied template to GitHub.
 git push -u origin main
 ```
 
+## Manage repo access
+
+Go to the __Settings__ tab of your new repo and click on __Manage access__. Click on the __Add teams__ button and add `the-markup/graphics` team.
+
 ## Edit and test out the graphic
 
 At this point you should try adding/editing files in the `src/[graphic name]` folder and then see if you can get it to compile: `npm run compile`

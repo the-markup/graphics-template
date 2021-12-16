@@ -17,7 +17,7 @@ module.exports = {
   },
 
   render(path, graphic) {
-    logger.log('css', 'compiling... ' + path);
+    logger.log('css', 'compiling ' + path);
     try {
       const css = sass.renderSync({
         file: path

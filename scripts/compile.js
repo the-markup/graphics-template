@@ -49,6 +49,7 @@ function compileGraphic(graphicName) {
   manifest.html = html.render(graphic);
   manifest.css = css.renderAll(graphic);
   manifest.js = javascript.renderAll(graphic);
+  manifest.iframe = html.iframe(graphic, manifest);
 
   if (dest === 'remote') {
     manifest.fallback = 'fallback.png'; // fallback image gets taken once the all graphics are built

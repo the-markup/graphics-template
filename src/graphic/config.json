@@ -4,5 +4,6 @@
   "source": "The Markup",
   "align": "none",
   "bespoke": false,
-  "auto_screenshot": true
+  "auto_screenshot": true,
+  "fonts": null
 }

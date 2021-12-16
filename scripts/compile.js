@@ -8,6 +8,9 @@ const preview = require('./preview/preview');
 const remote = require('./remote');
 const inquirer = require('inquirer');
 const pathFinder = require('./utilities/pathfinder');
+const handler = require('serve-handler');
+const http = require('http');
+const terminator = require('http-terminator');
 
 const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
 
@@ -46,6 +49,7 @@ function compileGraphic(graphicName) {
   manifest.html = html.render(graphic);
   manifest.css = css.renderAll(graphic);
   manifest.js = javascript.renderAll(graphic);
+  manifest.iframe = html.iframe(graphic, manifest);
 
   if (dest === 'remote') {
     manifest.fallback = 'fallback.png'; // fallback image gets taken once the all graphics are built
@@ -93,6 +97,14 @@ graphics.forEach((graphic, i) => {
 preview.init();
 
 if (dest === 'remote') {
+
+  const server = http.createServer((request, response) => {
+    return handler(request, response, {
+      public: './.build'
+    });
+  });
+  server.listen(5000);
+
   graphics = graphics.filter(Boolean);
 
   graphics.forEach(async graphic => {
@@ -106,4 +118,7 @@ if (dest === 'remote') {
 
     remote.deploy(graphic);
   });
+
+  const httpTerminator = terminator.createHttpTerminator({ server, });
+  httpTerminator.terminate();
 }

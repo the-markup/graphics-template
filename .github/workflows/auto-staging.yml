@@ -1,7 +1,7 @@
-name: "Trigger Manual Deploy to Production"
+name: "Auto-Deploy to Staging"
 
 on:
-  workflow_dispatch:
+  push:
     branches:
       - main
 
@@ -20,7 +20,7 @@ jobs:
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@9e1405074160aa259ccddd6ba2520c8cfe6fbefa
         with:
-          role-to-assume: arn:aws:iam::183122854331:role/github-graphics-production-upload
+          role-to-assume: arn:aws:iam::183122854331:role/github-graphics-staging-upload
           aws-region: us-east-1
 
       - uses: actions/setup-node@v2
@@ -29,4 +29,4 @@ jobs:
 
       - run: npm install
 
-      - run: npm run deploy
+      - run: npm run deploy -- staging

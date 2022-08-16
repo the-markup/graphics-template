@@ -4,7 +4,7 @@ module.exports = {
 	deploy(graphic) {
 		const profile = process.env.AWS_PROFILE || 'operations_prod';
 		var bucket = process.env.S3_UPLOADS_BUCKET || 'mrkp-wp-uploads-themarkup-org-production';
-		const repo_name = (process.env.GITHUB_REPOSITORY || "").replace("the-markup/", "");
+		const repo_name = (process.env.GITHUB_REPOSITORY || "").replace("the-markup/graphics-", "");
 		if (process.argv.indexOf('staging') > -1) {
 			bucket = 'mrkp-wp-uploads-themarkup-org-staging';
 		}

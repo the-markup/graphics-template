@@ -8,6 +8,9 @@ const preview = require('./preview/preview');
 const remote = require('./remote');
 const inquirer = require('inquirer');
 const pathFinder = require('./utilities/pathfinder');
+const handler = require('serve-handler');
+const http = require('http');
+const terminator = require('http-terminator');
 
 const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
 
@@ -35,12 +38,18 @@ function compileGraphic(graphicName) {
   }
 
   graphic.path = pathFinder.get(dest, graphic);
+  //append config options to check if screenshot must be taken
+  graphic.config = new Object;
+  if (fs.existsSync(`src/${graphicName}/config.json`)) {
+    graphic.config = JSON.parse(fs.readFileSync(`src/${graphicName}/config.json`, 'utf8'));
+  }
 
   fs.mkdirSync(`.build/${graphic.name}`);
 
   manifest.html = html.render(graphic);
   manifest.css = css.renderAll(graphic);
   manifest.js = javascript.renderAll(graphic);
+  manifest.iframe = html.iframe(graphic, manifest);
 
   if (dest === 'remote') {
     manifest.fallback = 'fallback.png'; // fallback image gets taken once the all graphics are built
@@ -88,10 +97,28 @@ graphics.forEach((graphic, i) => {
 preview.init();
 
 if (dest === 'remote') {
+
+  const server = http.createServer((request, response) => {
+    return handler(request, response, {
+      public: './.build'
+    });
+  });
+  server.listen(5000);
+
   graphics = graphics.filter(Boolean);
 
   graphics.forEach(async graphic => {
-    await screenshot.take(graphic);
+    //check if a screenshot should be taken
+    if (graphic.config.auto_screenshot) {
+      await screenshot.take(graphic);
+    }
+
+    //remove the config options before deploy
+    delete graphic.config;
+
     remote.deploy(graphic);
   });
+
+  const httpTerminator = terminator.createHttpTerminator({ server, });
+  httpTerminator.terminate();
 }

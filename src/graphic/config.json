@@ -1,6 +1,6 @@
 {
-  "heading": "I am the first Graphic",
-  "subhead": "Yes that's right the graphic",
+  "heading": "The heading is defined in config.json",
+  "subhead": "There is also a subhead you can set",
   "source": "The Markup",
   "align": "none",
   "bespoke": false,

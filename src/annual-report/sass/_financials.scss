@@ -1,0 +1,94 @@
+@use "abstracts/variables" as *;
+@use "abstracts/mq" as *;
+@use "abstracts/functions" as *;
+
+.financials {
+	position: relative;
+	padding: 20px;
+	margin-top: 40px;
+
+	&:before {
+		content: "";
+		background: transparent dots() left top;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 3px;
+	}
+
+	h3 {
+		color: $c-pink;
+
+		&.small {
+			font-size: $fs-xxs;
+			font-weight: normal;
+			letter-spacing: 2px;
+		}
+	}
+
+	img {
+		margin-top: 20px;
+	}
+
+	li {
+		font-size: $fs-xxs;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-top: 10px;
+	}
+
+	.revenues img {
+		transform: translateX(-10px);
+	}
+
+	.expenses {
+		margin-top: 40px;
+	}
+
+	.key {
+		position: relative;
+		margin-top: -40px;
+		max-width: 400px;
+	}
+
+	.key-item {
+		position: relative;
+		padding-left: 28px;
+
+		&:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 18px;
+			height: 18px;
+		}
+
+		&--navy:before {
+			background: $c-navy;
+		}
+
+		&--yellow:before {
+			background: #E3E539;
+		}
+
+		&--green:before {
+			background: #A2D398;
+		}
+
+		&--pink:before {
+			background: $c-pink;
+		}
+
+		&--blue:before {
+			background: #1078AD;
+		}
+	}
+
+	.key-total {
+		margin-top: 15px;
+		border-top: 1px solid $c-navy;
+		padding-top: 10px;
+	}
+}

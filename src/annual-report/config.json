@@ -1,9 +1,9 @@
 {
-  "heading": "The heading is defined in config.json",
-  "subhead": "There is also a subhead you can set",
-  "source": "The Markup",
+  "heading": "",
+  "subhead": "",
+  "source": "",
   "align": "none",
-  "bespoke": false,
+  "bespoke": true,
   "auto_screenshot": true,
   "fonts": null
 }

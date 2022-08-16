@@ -1,3 +1,54 @@
-@import 'abstracts/mq';
-@import 'abstracts/variables';
-@import 'abstracts/functions';
+@use "abstracts/variables" as *;
+
+.site-header {
+	display: none;
+}
+
+.graphics--annual-report {
+	margin-bottom: 0;
+	padding-bottom: 40px;
+
+	p {
+		margin-top: 10px;
+	}
+
+	.content {
+		max-width: 620px;
+		margin: 0 auto;
+
+		& > h2 {
+			font-family: $ff-display;
+			font-size: $fs-xl;
+			margin-top: 30px;
+		}
+	}
+
+	.person {
+		display: flex;
+		font-family: $ff-sans;
+
+		&__info {
+			margin-left: 15px;
+			margin-top: 15px;
+		}
+
+		&__name {
+			text-transform: uppercase;
+		}
+
+		&__title {
+			margin-top: 10px;
+			line-height: 1.1;
+		}
+
+		img {
+			width: 80px;
+			height: auto;
+		}
+	}
+
+	@import 'intro';
+	@import 'toc';
+	@import 'supporters';
+	@import 'financials';
+}

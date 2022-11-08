@@ -14,7 +14,8 @@ module.exports = {
     const csv = fs.readFileSync(`${__dirname}/${source}.csv`, 'utf8');
 
     data[source] = csvjson.toObject(csv, {
-      delimiter : ', '
+      delimiter : ',',
+      quote : '"'
     });
 
     return data;

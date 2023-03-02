@@ -241,7 +241,7 @@
           {{/each}}
       </style>
       {{#each js}}
-          <script src="http://localhost:5000/{{ this }}"></script>
+          <script src="{{ this }}"></script>
       {{/each}}
       {{#if config.source }}
           <div class="graphics__source">Source: {{ config.source }}</div>

@@ -52,7 +52,7 @@ Go to the __Settings__ tab of your new repo and click on __Manage access__. Clic
 
 At this point you should try adding/editing files in the `src/[graphic name]` folder and then see if you can get it to compile: `npm run compile`
 
-You can test out the graphic in a web browser by running `npm start` and then visiting [http://localhost:5000](http://localhost:5000)
+You can test out the graphic in a web browser by running `npm start` and then visiting [http://localhost:5001](http://localhost:5001)
 
 The `src/[graphic name]` is meaningful for the CMS, so you should start by renaming the `src/graphic` to something more meaningful, like `src/bar-graph`. You can put more than one graphic folder under `src`, which can be helpful for grouping graphics associated with an article.
 

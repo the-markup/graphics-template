@@ -13,7 +13,7 @@ module.exports = {
 
 			return `https://${hostname}/graphics/${repo_name}${graphic.name}/${graphic.version}`;
 		} else {
-			return `http://localhost:5000/${graphic.name}`;
+			return `http://localhost:5001/${graphic.name}`;
 		}
 	}
 }

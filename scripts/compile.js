@@ -103,7 +103,7 @@ if (dest === 'remote') {
       public: './.build'
     });
   });
-  server.listen(5000);
+  server.listen(5001);
 
   graphics = graphics.filter(Boolean);
 

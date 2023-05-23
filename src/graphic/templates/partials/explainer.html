@@ -1,0 +1,13 @@
+<div class="explainer__container flex-column">
+    {{#each data.narrative}}
+        <div class="explainer__step">
+            <div class="explainer__big_num">
+                {{#math @index "+" 1}}{{/math}}.
+            </div>
+            <p>{{text}}</p>
+            <div class="explainer__image">
+                <img src="{{../path}}/assets/explainer_{{#math @index '+' 1}}{{/math}}.png" alt="{{alt}}">
+            </div>
+        </div>
+    {{/each}}
+</div>

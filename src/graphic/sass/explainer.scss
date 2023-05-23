@@ -1,0 +1,41 @@
+@import 'abstracts/mq';
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+
+.explainer__step {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 15px;
+    @include mq(0, $bp-mobile) {
+        flex-flow: row wrap;
+    }
+
+    .explainer__image {
+        max-width: 300px;
+        width: 50%;
+        margin-left: 20px;
+        flex: 0 0 auto;
+        @include mq(0, $bp-mobile) {
+            width: 100%;
+            margin: 15px 0px;
+        }
+        img {
+            width: 100%;
+            object-fit: contain;
+            border: 1px solid $c-white;  
+        }
+
+    }
+
+    
+
+    .explainer__big_num {
+        font-size: $fs-lg;
+        font-family: $ff-serif;
+        font-weight: 700;
+        color: $c-pink;
+        width: 20px;
+        margin-right: 20px;
+        flex: 0 0 auto;
+    }
+}

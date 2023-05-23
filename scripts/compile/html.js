@@ -76,6 +76,22 @@ module.exports = {
     handlebars.registerHelper('handlise', string => {
       return string.toLowerCase().replace(/ /g, '-');
     })
+
+    handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+      return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    })
+
+    handlebars.registerHelper('math', function(lvalue, operator, rvalue) {
+        lvalue = parseFloat(lvalue);
+        rvalue = parseFloat(rvalue);
+        return {
+            "+": lvalue + rvalue,
+            "-": lvalue - rvalue,
+            "*": lvalue * rvalue,
+            "/": lvalue / rvalue,
+            "%": lvalue % rvalue
+        }[operator]
+    });
   },
 
   registerPartials(graphicName) {

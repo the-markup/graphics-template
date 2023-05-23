@@ -5,19 +5,25 @@ let data = new Object;
 
 module.exports = {
   init() {
-    data = this.getCSV('data');
+    data['narrative'] = getJSON('narrative');
 
     return data;
-  },
+  }
+};
 
-  getCSV(source) {
+function getCSV(source) {
     const csv = fs.readFileSync(`${__dirname}/${source}.csv`, 'utf8');
 
     data[source] = csvjson.toObject(csv, {
-      delimiter : ',',
+      delimiter : ', ',
       quote : '"'
     });
 
     return data;
+  };
+
+function getJSON(source) {
+    const narrative = JSON.parse(fs.readFileSync(`${__dirname}/${source}.json`, 'utf8'));
+
+    return narrative;
   }
-}

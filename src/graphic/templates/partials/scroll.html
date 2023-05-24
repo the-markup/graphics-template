@@ -1,0 +1,17 @@
+<div id="scroll__container">
+    <div id="scroll__viz-container" aria-hidden="true">
+        {{#each data.narrative}}
+            <div class="scroll__viz"></div>
+        {{/each}}
+    </div>
+
+    <article id="scroll__slide-container">
+        {{#each data.narrative}}
+            <div class="scroll__slide">
+                <div class="scroll__text-wrapper">
+                    <p>{{ text }}</p>
+                </div>
+            </div>
+        {{/each}}
+    </article>
+</div>

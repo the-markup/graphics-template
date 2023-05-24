@@ -16,7 +16,7 @@
         margin-left: 20px;
         flex: 0 0 auto;
         background-color: $c-light-tan;
-        
+
         @include mq(0, $bp-mobile) {
             width: 100%;
             margin: 15px 0px;
@@ -27,10 +27,7 @@
             border: 1px solid $c-white;
               
         }
-
     }
-
-    
 
     .explainer__big_num {
         font-size: $fs-lg;

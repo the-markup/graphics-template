@@ -1,0 +1,29 @@
+.flex-column {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.justify-flex-start {
+    justify-content: flex-start;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.justify-space-evenly {
+    justify-content: space-evenly;
+}
+
+.align-flex-start {
+    align-items: flex-start;
+}
+
+.align-center {
+    align-items: center;
+}

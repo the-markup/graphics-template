@@ -11,6 +11,7 @@ const pathFinder = require('./utilities/pathfinder');
 const handler = require('serve-handler');
 const http = require('http');
 const terminator = require('http-terminator');
+const svelte = require('./compile/svelte');
 
 const dest = process.argv[2] === 'remote' ? 'remote' : 'local';
 
@@ -46,9 +47,17 @@ function compileGraphic(graphicName) {
 
   fs.mkdirSync(`.build/${graphic.name}`);
 
-  manifest.html = html.render(graphic);
-  manifest.css = css.renderAll(graphic);
-  manifest.js = javascript.renderAll(graphic);
+  if (graphic.config.svelte) {
+    const result = svelte.render(graphic);
+    manifest.js = result.js;
+    manifest.html = result.html;
+    manifest.css = result.css;
+  } else {
+    manifest.html = html.render(graphic);
+    manifest.css = css.renderAll(graphic);
+    manifest.js = javascript.renderAll(graphic);
+  }
+
   manifest.iframe = html.iframe(graphic, manifest);
 
   if (dest === 'remote') {

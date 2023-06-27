@@ -60,14 +60,15 @@ The `src/[graphic name]` is meaningful for the CMS, so you should start by renam
 
 You can adjust some parameters for the sake of testing locally in `config.json`.
 
-| Key       | What does it do? |
-| --------- | ------------ |
-| `name`    | The most important setting. This determines where the interactive is uploaded to. Make sure it's something descriptive and unique |
-| `heading` | Only used for preview purposes |
-| `source`  | Only used for preview purposes |
-| `align`    | Set the alignment. Only used to determine how to preview it locally. Options are currently: `inline`, `left`, `right`, `full-width` |
-| `bespoke`  | Boolean used to determine whether graphic should be on a bespoke page or not |
-| `screen_capture` | set this to `false` if you have any troubles with the screengrab process, it can sometimes crash unexpectedly |
+| Key              | What does it do?                                                                                                                     |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| `name`           | The most important setting. This determines where the interactive is uploaded to. Make sure it's something descriptive and unique.   |
+| `heading`        | Only used for preview purposes.                                                                                                      |
+| `source`         | Only used for preview purposes.                                                                                                      |
+| `align`          | Set the alignment. Only used to determine how to preview it locally. Options are currently: `inline`, `left`, `right`, `full-width`. |
+| `bespoke`        | Boolean used to determine whether graphic should be on a bespoke page.                                                               |
+| `screen_capture` | Set this to `false` if you have any troubles with the screengrab process, it can sometimes crash unexpectedly.                       |
+| `svelte`         | Set this to `true` if you want to use Svelte. Replaces the `javascript`, `sass`, and `templates` directories.                        |
 
 ## Deploying
 
@@ -80,7 +81,17 @@ In order to deploy your graphics to Production:
 3. Select which branch you want to deploy
 4. Click the "Run workflow" button
 
-## Using nvm
+## Using Svelte
+
+> **Warning**
+> Svelte support is optional and experimental. Please [report](https://github.com/the-markup/graphics-template/issues/new) or fix any issues you encounter.
+
+> **Note**
+> Update the `GRAPHIC_NAME` constant in `svelte/app.js` if you rename the folder your graphic is in.
+
+Your graphic can use [Svelte](https://svelte.dev/), a JavaScript framework for elegantly building reactive web apps. To get started, enable the option in `config.json` and open `App.svelte`. This file serves as the entry point to your graphic, like `index.html` used to. You can create and import other components, JavaScript, and CSS files.
+
+## Using `nvm`
 
 Check which version of node.js you have installed:
 
@@ -113,10 +124,11 @@ There are two main sections to the template, represented by the two root level f
 
 `src` is where your graphic code actually lives. Multiple folders contain different parts of the graphic that are later compiled...
 
-| Folder Name  | What's in it |
-| ------------ | ------------ |
-| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`. |
-| `data`       | This is the place to store data and if needed using `clean.js` filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates |
+| Folder Name  | What's in it                                                                                                                                                                                                                                        |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`.                                     |
+| `data`       | This is the place to store data and if needed using `clean.js` filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates                                                                       |
 | `javascript` | Javascript compiled using webpack sits in here. Any js files placed in the root of this folder will export as a unique javascript file. Any js files placed in newly created folders will be ignored but can imported through a root level js file. |
-| `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together but like javascript you can export multiple css files by having multiple root level files here |
-| `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated but you can reference other html files placed in here as includes. |
+| `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together but like javascript you can export multiple css files by having multiple root level files here                                                        |
+| `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated but you can reference other html files placed in here as includes.                                                                                            |
+| `svelte`     | Contains files for a Svelte project. The only required file is `App.svelte`, which will be loaded into the page.                                                                                                                                    |

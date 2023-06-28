@@ -7,6 +7,7 @@ const css = require('./compile/css');
 const javascript = require('./compile/javascript');
 const assets = require('./compile/assets');
 const preview = require('./preview/preview');
+const svelte = require('./compile/svelte');
 
 browserSync.init({
   server: './.build',
@@ -39,6 +40,8 @@ watch('src', { recursive: true }, function(event, file) {
     css.renderAll(graphic);
   } else if (fileExt === 'js') {
     javascript.renderAll(graphic);
+  } else if (fileExt === 'svelte') {
+    svelte.render(graphic);
   } else {
     console.log('non-watchable file extension changed :' + fileExt);
   }

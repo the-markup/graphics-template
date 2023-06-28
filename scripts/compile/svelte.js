@@ -13,8 +13,7 @@ module.exports = {
         const buildDir = path.join(rootDir, '.build', graphic.name);
 
         webpack({
-            // mode: graphic.dest == 'remote' ? 'production' : 'development',
-            mode: 'production',
+            mode: graphic.dest == 'remote' ? 'production' : 'development',
             entry: path.join(rootDir, 'src', graphic.name, 'svelte/app.js'),
             output: {
                 path: buildDir

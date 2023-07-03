@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { webpack } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SveltePreprocess = require('svelte-preprocess');
 
 module.exports = {
     render(graphic) {
@@ -33,7 +34,11 @@ module.exports = {
                         use: {
                             loader: 'svelte-loader',
                             options: {
-                                emitCss: true
+                                emitCss: true,
+                                preprocess: SveltePreprocess({
+                                    scss: true,
+                                    sass: true
+                                })
                             }
                         }
                     },
@@ -53,6 +58,21 @@ module.exports = {
                                     url: false
                                 }
                             }
+                        ]
+                    },
+                    {
+                        test: /\.ts$/,
+                        use: 'ts-loader',
+                        exclude: /node_modules/
+                    },
+                    {
+                        test: /\.(scss|sass)$/,
+                        use: [
+                            {
+                                loader: MiniCssExtractPlugin.loader
+                            },
+                            'css-loader',
+                            'sass-loader'
                         ]
                     }
                 ]

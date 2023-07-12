@@ -86,10 +86,14 @@ In order to deploy your graphics to Production:
 > **Warning**
 > Svelte support is optional and experimental. Please [report](https://github.com/the-markup/graphics-template/issues/new) or fix any issues you encounter.
 
-> **Note**
-> Update the `GRAPHIC_NAME` constant in `svelte/app.js` if you rename the folder your graphic is in.
-
 Your graphic can use [Svelte](https://svelte.dev/), a JavaScript framework for elegantly building reactive web apps. To get started, enable the option in `config.json` and open `App.svelte`. This file serves as the entry point to your graphic, like `index.html` used to. You can create and import other components, JavaScript, and CSS files.
+
+When using Svelte, there are several environment variables you can use.
+
+| Variable                   | Purpose                                            | Example                                                                                                             |
+|----------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `process.env.GRAPHIC_NAME` | The name of the graphic                            | `'graphic'`                                                                                                         |
+| `process.env.ASSET_BASE`   | Base path/URL for files in the `assets/` directory | `'https://mrkp-static-production.themarkup.org/graphics/blacklight-client_blacklight-client/1688144961393/assets/'` |
 
 ## Using `nvm`
 

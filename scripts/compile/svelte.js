@@ -1,7 +1,7 @@
 const logger = require('../utilities/logger');
 const fs = require('fs');
 const path = require('path');
-const { webpack } = require('webpack');
+const { webpack, EnvironmentPlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SveltePreprocess = require('svelte-preprocess');
 
@@ -78,7 +78,11 @@ module.exports = {
                 ]
             },
             plugins: [
-                new MiniCssExtractPlugin({ filename: 'main.css' })
+                new MiniCssExtractPlugin({ filename: 'main.css' }),
+                new EnvironmentPlugin({
+                    GRAPHIC_NAME: graphic.name,
+                    GRAPHIC_PATH: graphic.path
+                })
             ]
         }).run((_, stats) => {
             if (stats.compilation.errors?.length) {

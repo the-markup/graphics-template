@@ -93,7 +93,7 @@ When using Svelte, there are several environment variables you can use.
 | Variable                   | Purpose                                            | Example                                                                                                             |
 |----------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
 | `process.env.GRAPHIC_NAME` | The name of the graphic                            | `'graphic'`                                                                                                         |
-| `process.env.ASSET_BASE`   | Base path/URL for files in the `assets/` directory | `'https://mrkp-static-production.themarkup.org/graphics/blacklight-client_blacklight-client/1688144961393/assets/'` |
+| `process.env.GRAPHIC_PATH`   | Base path/URL for files in the `assets/` directory | `'https://mrkp-static-production.themarkup.org/graphics/blacklight-client_blacklight-client/1688144961393/assets/'` |
 
 ## Using `nvm`
 

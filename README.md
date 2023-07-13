@@ -80,7 +80,7 @@ git fetch --all
 git merge upstream/main
 ```
 
-Then, resolve any merge conflicts.
+Then, resolve any merge conflicts. It may result in files being created in the default `graphic/` directory. You can choose how to merge those into your graphics.
 
 ## Deploying
 

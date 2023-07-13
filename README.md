@@ -70,6 +70,18 @@ You can adjust some parameters for the sake of testing locally in `config.json`.
 | `screen_capture` | Set this to `false` if you have any troubles with the screengrab process, it can sometimes crash unexpectedly.                             |
 | `svelte`         | Set this to `true` if you want to use Svelte. Use the `svelte` directory instead of the `javascript`, `sass`, and `templates` directories. |
 
+## Updating forks with changes from `graphics-template`
+
+If your fork has become disconnected from the base template, you can pull in new changes with the following commands:
+
+```bash
+git remote add upstream https://github.com/the-markup/graphics-template
+git fetch --all
+git merge upstream/main
+```
+
+Then, resolve any merge conflicts.
+
 ## Deploying
 
 Go to the Actions tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.

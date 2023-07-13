@@ -75,7 +75,7 @@ You can adjust some parameters for the sake of testing locally in `config.json`.
 If your fork has become disconnected from the base template, you can pull in new changes with the following commands:
 
 ```bash
-git remote add upstream https://github.com/the-markup/graphics-template
+git remote add upstream git@github.com:the-markup/graphics-template.git
 git fetch --all
 git merge upstream/main
 ```

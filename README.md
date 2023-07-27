@@ -4,7 +4,7 @@ Structure and scripts for developing and deploying graphics on The Markup.
 
 ## Dependencies
 
-* [node.js](https://nodejs.org/) v14 (use [`nvm`](#using-nvm) to adjust your version if necessary)
+* [node.js](https://nodejs.org/) v20 (use [`nvm`](#using-nvm) to adjust your version if necessary)
 
 ## Creating a new graphic
 
@@ -48,11 +48,11 @@ git push -u origin main
 
 Go to the __Settings__ tab of your new repo and click on __Manage access__. Click on the __Add teams__ button and add `the-markup/graphics` team.
 
-## Edit and test out the graphic
+## Edit and test the graphic
 
 At this point you should try adding/editing files in the `src/[graphic name]` folder and then see if you can get it to compile: `npm run compile`
 
-You can test out the graphic in a web browser by running `npm start` and then visiting [http://localhost:5001](http://localhost:5001)
+You can test the graphic in a web browser by running `npm start` and then visiting [http://localhost:5001](http://localhost:5001)
 
 The `src/[graphic name]` is meaningful for the CMS, so you should start by renaming the `src/graphic` to something more meaningful, like `src/bar-graph`. You can put more than one graphic folder under `src`, which can be helpful for grouping graphics associated with an article.
 
@@ -66,7 +66,7 @@ You can adjust some parameters for the sake of testing locally in `config.json`.
 | `heading`        | Only used for preview purposes.                                                                                                            |
 | `source`         | Only used for preview purposes.                                                                                                            |
 | `align`          | Set the alignment. Only used to determine how to preview it locally. Options are currently: `inline`, `left`, `right`, `full-width`.       |
-| `bespoke`        | Boolean used to determine whether graphic should be on a bespoke page.                                                                     |
+| `bespoke`        | Boolean used to determine whether graphic should be on a bespoke page. Bespoke pages use a full width graphic where the content normally appears. Example: [Blacklight](https://themarkup.org/blacklight)                                                                    |
 | `screen_capture` | Set this to `false` if you have any troubles with the screengrab process, it can sometimes crash unexpectedly.                             |
 | `svelte`         | Set this to `true` if you want to use Svelte. Use the `svelte` directory instead of the `javascript`, `sass`, and `templates` directories. |
 
@@ -84,7 +84,7 @@ Then, resolve any merge conflicts. It may result in files being created in the d
 
 ## Deploying
 
-Go to the Actions tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
+Go to the __Actions__ tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
 
 In order to deploy your graphics to Production:
 
@@ -128,7 +128,7 @@ This template is a framework and structure for a collection of graphics. The con
 
 If everything works correctly you can ignore the `scripts` folder (a series of Node scripts that compile, watch and deploy). The `src` folder is where the source files for your graphic, or if you have more than one graphics, live.
 
-An individual graphic's source files are made up of Handlebars templates, SCSS files, and an ES6 Webpack app. There is also an optional `data/data.js` file which is an optional node script you can modify on a graphic-by-graphic basis to pass in different data to the Handlebars template. This can be used in different ways. It could be something simple like importing a csv file and cleaning it up for the frontend. Alternatively, it could be running `JSDOM` and `D3` to precompile more complex graphics so that the client isn't burdened with this.
+An individual graphic's source files are made up of Handlebars templates, SCSS files, and an ES6 Webpack app. There is also an optional `data/data.js` file which is an optional node script you can modify on a graphic-by-graphic basis to pass different data to the Handlebars template. This can be used in different ways. It could be something simple like importing a csv file and cleaning it up for the frontend. Alternatively, it could be running `JSDOM` and `D3` to precompile more complex graphics so that the client isn't burdened with this.
 
 The philosophy here is that everything should be as light and as simple as possible for the client. Which is why, to date, we don't run Vue or React and we try to avoid sending big libraries like D3 in a bundled app.
 
@@ -142,9 +142,9 @@ There are two main sections to the template, represented by the two root level f
 
 | Folder Name  | What's in it                                                                                                                                                                                                                                        |
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`.                                     |
+| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will be uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`.                                     |
 | `data`       | This is the place to store data and if needed using `clean.js` filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates                                                                       |
 | `javascript` | Javascript compiled using webpack sits in here. Any js files placed in the root of this folder will export as a unique javascript file. Any js files placed in newly created folders will be ignored but can imported through a root level js file. |
 | `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together but like javascript you can export multiple css files by having multiple root level files here                                                        |
-| `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated but you can reference other html files placed in here as includes.                                                                                            |
+| `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated but you can reference other HTML files placed in here: `{{> partials/example }}`                                                             |
 | `svelte`     | Contains files for a Svelte project. The only required file is `App.svelte`, which will be loaded into the page.                                                                                                                                    |

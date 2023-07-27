@@ -128,7 +128,7 @@ This template is a framework and structure for a collection of graphics. The con
 
 If everything works correctly you can ignore the `scripts` folder (a series of Node scripts that compile, watch and deploy). The `src` folder is where the source files for your graphic, or if you have more than one graphics, live.
 
-An individual graphic's source files are made up of Handlebars templates, SCSS files, and an ES6 Webpack app. There is also an optional `data/data.js` file which is an optional node script you can modify on a graphic-by-graphic basis to pass in different data to the Handlebars template. This can be used in different ways. It could be something simple like importing a csv file and cleaning it up for the frontend. Alternatively, it could be running `JSDOM` and `D3` to precompile more complex graphics so that the client isn't burdened with this.
+An individual graphic's source files are made up of Handlebars templates, SCSS files, and an ES6 Webpack app. There is also an optional `data/data.js` file which is an optional node script you can modify on a graphic-by-graphic basis to pass different data to the Handlebars template. This can be used in different ways. It could be something simple like importing a csv file and cleaning it up for the frontend. Alternatively, it could be running `JSDOM` and `D3` to precompile more complex graphics so that the client isn't burdened with this.
 
 The philosophy here is that everything should be as light and as simple as possible for the client. Which is why, to date, we don't run Vue or React and we try to avoid sending big libraries like D3 in a bundled app.
 

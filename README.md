@@ -4,7 +4,7 @@ Structure and scripts for developing and deploying graphics on The Markup.
 
 ## Dependencies
 
-* [node.js](https://nodejs.org/) v14 (use [`nvm`](#using-nvm) to adjust your version if necessary)
+* [node.js](https://nodejs.org/) v20 (use [`nvm`](#using-nvm) to adjust your version if necessary)
 
 ## Creating a new graphic
 
@@ -48,11 +48,11 @@ git push -u origin main
 
 Go to the __Settings__ tab of your new repo and click on __Manage access__. Click on the __Add teams__ button and add `the-markup/graphics` team.
 
-## Edit and test out the graphic
+## Edit and test the graphic
 
 At this point you should try adding/editing files in the `src/[graphic name]` folder and then see if you can get it to compile: `npm run compile`
 
-You can test out the graphic in a web browser by running `npm start` and then visiting [http://localhost:5001](http://localhost:5001)
+You can test the graphic in a web browser by running `npm start` and then visiting [http://localhost:5001](http://localhost:5001)
 
 The `src/[graphic name]` is meaningful for the CMS, so you should start by renaming the `src/graphic` to something more meaningful, like `src/bar-graph`. You can put more than one graphic folder under `src`, which can be helpful for grouping graphics associated with an article.
 

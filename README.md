@@ -4,7 +4,7 @@ Structure and scripts for developing and deploying graphics on The Markup.
 
 ## Dependencies
 
-* [node.js](https://nodejs.org/) v14 (use [`nvm`](#using-nvm) to adjust your version if necessary)
+* [node.js](https://nodejs.org/) v20 (use [`nvm`](#using-nvm) to adjust your version if necessary)
 
 ## Creating a new graphic
 
@@ -66,7 +66,7 @@ You can adjust some parameters for the sake of testing locally in `config.json`.
 | `heading`        | Only used for preview purposes.                                                                                                            |
 | `source`         | Only used for preview purposes.                                                                                                            |
 | `align`          | Set the alignment. Only used to determine how to preview it locally. Options are currently: `inline`, `left`, `right`, `full-width`.       |
-| `bespoke`        | Boolean used to determine whether graphic should be on a bespoke page.                                                                     |
+| `bespoke`        | Boolean used to determine whether graphic should be on a bespoke page. Bespoke pages use a full width graphic where the content normally appears. Example: [Blacklight](https://themarkup.org/blacklight)                                                                    |
 | `screen_capture` | Set this to `false` if you have any troubles with the screengrab process; it can sometimes crash unexpectedly.                             |
 | `svelte`         | Set this to `true` if you want to use Svelte. Use the `svelte` directory instead of the `javascript`, `sass`, and `templates` directories. |
 
@@ -84,7 +84,7 @@ Then, resolve any merge conflicts. It may result in files being created in the d
 
 ## Deploying
 
-Go to the Actions tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
+Go to the __Actions__ tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
 
 In order to deploy your graphics to Production:
 
@@ -143,7 +143,7 @@ There are two main sections to the template, represented by the two root level f
 | Folder name  | What's in it                                                                                                                                                                                                                                        |
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `assets`     | Place any additional assets, like images, in here, and they'll get uploaded with the rest of the graphic. These will be uploaded into an `/assets/` folder, which you can reference in handlebars with `{{ path }}`.                                     |
-| `data`       | This is the place to store data and, if needed, use `clean.js` filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates.                                                                       |
+| `data`       | This is the place to store data and, if needed, use `clean.js` to filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates.                                                                       |
 | `javascript` | Javascript compiled using webpack sits in here. Any js files placed in the root of this folder will export as a unique javascript file. Any js files placed in newly created folders will be ignored but can be imported through a root level js file. |
 | `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together, but like JavaScript you can export multiple css files by having multiple root level files here.                                                        |
 | `templates`  | Here are the handlebars templates. `index.html` is the only template that's generated, but you can reference other html files placed in here as includes.                                                                                            |

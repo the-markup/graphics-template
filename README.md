@@ -84,7 +84,7 @@ Then, resolve any merge conflicts. It may result in files being created in the d
 
 ## Deploying
 
-Go to the _Actions_ tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
+Go to the __Actions__ tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
 
 In order to deploy your graphics to Production:
 

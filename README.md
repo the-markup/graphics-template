@@ -84,7 +84,7 @@ Then, resolve any merge conflicts. It may result in files being created in the d
 
 ## Deploying
 
-Go to the Actions tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
+Go to the _Actions_ tab of your graphics repo. You should see that whenever you push a commit to the `main` branch, your graphics will get deployed to the staging CMS.
 
 In order to deploy your graphics to Production:
 
@@ -142,7 +142,7 @@ There are two main sections to the template, represented by the two root level f
 
 | Folder Name  | What's in it                                                                                                                                                                                                                                        |
 |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`.                                     |
+| `assets`     | Place any additional assets, like images, in here and they'll get uploaded with the rest of the graphic. These will be uploaded into an `/assets/` folder which you can reference in handlebars with `{{ path }}`.                                     |
 | `data`       | This is the place to store data and if needed using `clean.js` filter and clean any data. The returned value set in `clean.js` will be accessible by the handlebars templates                                                                       |
 | `javascript` | Javascript compiled using webpack sits in here. Any js files placed in the root of this folder will export as a unique javascript file. Any js files placed in newly created folders will be ignored but can imported through a root level js file. |
 | `sass`       | We use Sass to write our css. This is inlined on the page so it will all get bundled together but like javascript you can export multiple css files by having multiple root level files here                                                        |

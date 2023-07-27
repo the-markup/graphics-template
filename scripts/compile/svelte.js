@@ -81,7 +81,7 @@ module.exports = {
                 new MiniCssExtractPlugin({ filename: 'main.css' }),
                 new EnvironmentPlugin({
                     GRAPHIC_NAME: graphic.name,
-                    ASSET_BASE: graphic.path
+                    GRAPHIC_PATH: graphic.path
                 })
             ]
         }).run((_, stats) => {

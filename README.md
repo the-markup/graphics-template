@@ -6,6 +6,14 @@ Structure and scripts for developing and deploying graphics on The Markup.
 
 * [node.js](https://nodejs.org/) v20 (use [`nvm`](#using-nvm) to adjust your version if necessary)
 
+## Quick start
+
+```
+nvm use
+npm install
+npm start
+```
+
 ## Creating a new graphic
 
 1. Open Terminal

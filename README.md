@@ -21,8 +21,8 @@ npm start
 
 ```
 git clone git@github.com:the-markup/graphics-template.git
-mv graphics-template graphics-2023-blobs
-cd graphics-2023-blobs
+mv graphics-template graphics-2024-blobs
+cd graphics-2024-blobs
 npm install
 ```
 
@@ -42,8 +42,8 @@ git remote -v
 Confirm that it's pointing at your newly created repository. It should look something like this:
 
 ```
-origin	git@github.com:the-markup/graphics-2023-blobs.git (fetch)
-origin	git@github.com:the-markup/graphics-2023-blobs.git (push)
+origin	git@github.com:the-markup/graphics-2024-blobs.git (fetch)
+origin	git@github.com:the-markup/graphics-2024-blobs.git (push)
 ```
 
 Push your freshly copied template to GitHub.
@@ -126,7 +126,7 @@ node --version
 If you're not using v14, you can use [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating) to download/install it. In the process of installing `nvm`, you'll be asked to adjust your `.bashrc` or  `.zshrc` file. Once you open a new terminal window, you should be able to download and activate a new version of node.js like this (using the version configured in the `.nvmrc` file):
 
 ```
-cd graphics-2023-blobs
+cd graphics-2024-blobs
 nvm use
 ```
 

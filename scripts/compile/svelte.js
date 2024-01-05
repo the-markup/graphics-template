@@ -36,7 +36,9 @@ module.exports = {
                             options: {
                                 emitCss: true,
                                 preprocess: SveltePreprocess({
-                                    scss: true,
+                                    scss: {
+                                        prependData: `@import 'src/${graphic.name}/sass/style.scss';`
+                                    },
                                     sass: true
                                 })
                             }

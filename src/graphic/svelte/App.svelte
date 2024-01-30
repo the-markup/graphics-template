@@ -14,12 +14,12 @@
 	.messages {
 		.typescript {
 			color: white;
-			background-color: #3F74BA;
+			background-color: $c-lead;
 		}
 
 		.scss {
 			color: white;
-			background-color: #BA6993;
+			background-color: $c-plum;
 		}
 	}
 </style>

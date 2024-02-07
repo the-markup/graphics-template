@@ -22,7 +22,7 @@
   },
   "homepage": "https://gitlab.com/the_markup/graphic-template#readme",
   "dependencies": {
-    "browser-sync": "^2.27.10",
+    "browser-sync": "^3.0.2",
     "browser-sync-reuse-tab": "^1.0.3",
     "chalk": "^3.0.0",
     "css-loader": "^6.8.1",

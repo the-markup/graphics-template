@@ -70,12 +70,13 @@ You can adjust some parameters for the sake of testing locally in `config.json`.
 
 | Key              | What does it do?                                                                                                                           |
 |------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`           | The most important setting. This determines where the interactive is uploaded. Make sure it's something descriptive and unique.         |
-| `heading`        | Only used for preview purposes.                                                                                                            |
-| `source`         | Only used for preview purposes.                                                                                                            |
+| `heading`        | Only used for preview purposes. Sets the heading displayed in the local graphic.                                                           |
+| `subhead`        | Only used for preview purposes. Sets the subheading displayed in the local graphic.                                                        |
+| `source`         | Only used for preview purposes. Sets the source for the local graphic.                                                                     |
 | `align`          | Set the alignment. Only used to determine how to preview it locally. Options are currently: `inline`, `left`, `right`, `full-width`.       |
 | `bespoke`        | Boolean used to determine whether graphic should be on a bespoke page. Bespoke pages use a full width graphic where the content normally appears. Example: [Blacklight](https://themarkup.org/blacklight)                                                                    |
-| `screen_capture` | Set this to `false` if you have any troubles with the screengrab process; it can sometimes crash unexpectedly.                             |
+| `auto_screenshot`| Controls whether to take a screenshot during compilation. Set this to `false` if you have any troubles with the screengrab process; it can sometimes crash unexpectedly.                             |
+| `fonts`          | Allows loading of custom fonts. Set to the filepath of any local fonts that should be compiled with the graphic.                           |
 | `svelte`         | Set this to `true` if you want to use Svelte. Use the `svelte` directory instead of the `javascript`, `sass`, and `templates` directories. |
 
 ## Updating forks with changes from `graphics-template`

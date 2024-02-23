@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const path = require('path');
 const html = require('./compile/html');
 const css = require('./compile/css');
 const javascript = require('./compile/javascript');
@@ -22,10 +23,12 @@ if (!fs.existsSync('.build')) {
 }
 
 function compileGraphic(graphicName) {
+  const graphicFolder = path.join('src', graphicName);
+
   if (graphicName.indexOf(' ') >= 0) {
     console.log('A space was found in', graphicName, 'please rename without spaces');
     return false;
-  } else if (!fs.statSync(`src/${graphicName}`).isDirectory()) {
+  } else if (!fs.statSync(graphicFolder).isDirectory()) {
     console.log('Folder for', graphicName, 'was not found');
     return false;
   }
@@ -41,11 +44,13 @@ function compileGraphic(graphicName) {
   graphic.path = pathFinder.get(dest, graphic);
   //append config options to check if screenshot must be taken
   graphic.config = new Object;
-  if (fs.existsSync(`src/${graphicName}/config.json`)) {
-    graphic.config = JSON.parse(fs.readFileSync(`src/${graphicName}/config.json`, 'utf8'));
+  const configPath = path.join(graphicFolder, 'config.json');
+  if (fs.existsSync(configPath)) {
+    graphic.config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
   }
 
-  fs.mkdirSync(`.build/${graphic.name}`);
+  const buildDir = path.join('.build', graphic.name);
+  fs.mkdirSync(buildDir);
 
   if (graphic.config.svelte) {
     const result = svelte.render(graphic);
@@ -65,17 +70,19 @@ function compileGraphic(graphicName) {
   }
 
   assets.init(graphic);
-  fs.writeFileSync(`.build/${graphic.name}/manifest.json`, JSON.stringify(manifest, null, 2));
+  const manifestPath = path.join('.build', graphic.name, 'manifest.json');
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
   return graphic;
 }
 
-let graphics = fs.readdirSync('src/', { withFileTypes: true })
+const srcDir = path.join('src', path.sep);
+let graphics = fs.readdirSync(srcDir, { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
 
 if (process.env.GITHUB_REPOSITORY) {
-  graphics = fs.readdirSync('src/')
+  graphics = fs.readdirSync(srcDir)
 }
 else if (dest === 'remote' && graphics.length > 1) {
   let answering = true;
@@ -87,7 +94,7 @@ else if (dest === 'remote' && graphics.length > 1) {
     choices: graphics
   }]).then(answers => {
     if (answers.graphics === 'All Graphics') {
-      graphics = fs.readdirSync('src/');
+      graphics = fs.readdirSync(srcDir);
     } else {
       graphics = [answers.graphics]
     }
@@ -104,18 +111,16 @@ graphics.forEach((graphic, i) => {
 });
 
 preview.init();
-
 if (dest === 'remote') {
-
+  const deployBuildDir = path.join('.', path.sep, '.build');
   const server = http.createServer((request, response) => {
     return handler(request, response, {
-      public: './.build'
+      public: deployBuildDir
     });
   });
   server.listen(5001);
 
   graphics = graphics.filter(Boolean);
-
   graphics.forEach(async graphic => {
     //check if a screenshot should be taken
     if (graphic.config.auto_screenshot) {

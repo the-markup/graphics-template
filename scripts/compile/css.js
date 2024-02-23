@@ -1,3 +1,4 @@
+const path = require('path');
 const fs = require('fs-extra');
 const sass = require('sass');
 const glob = require('glob');
@@ -5,28 +6,27 @@ const logger = require('../utilities/logger');
 
 module.exports = {
   renderAll(graphic) {
-    const paths = glob.sync(`src/${graphic.name}/sass/*.scss`);
+    const scssPathsMatch = path.join('src', graphic.name, 'sass', '*scss');
+    const paths = glob.sync(scssPathsMatch);
     const manifest = new Array();
 
-    paths.forEach(path => {
-      this.render(path, graphic);
-      manifest.push(path.replace(`src/${graphic.name}/sass/`, '').replace('.scss', '.css'));
+    paths.forEach(filepath => {
+      this.render(filepath, graphic);
+      const sassDir = path.join('src', graphic.name, 'sass', path.sep);
+      manifest.push(filepath.replace(sassDir, '').replace('.scss', '.css'));
     });
 
     return manifest;
   },
 
-  render(path, graphic) {
-    logger.log('css', 'compiling ' + path);
+  render(filepath, graphic) {
+    logger.log('css', 'compiling ' + filepath);
     try {
-      const css = sass.renderSync({
-        file: path
-      }).css.toString('utf8').replace(/{{ path }}/g, graphic.path);
-
-      const fileName = path.replace(/^.*[\\\/]/, '').replace('.scss', '');
-
-      fs.writeFileSync(`./.build/${graphic.name}/${fileName}.css`, css);
-      logger.log('css', 'finished ' + path);
+      const css = sass.compile(filepath).css.toString('utf8').replace(/{{ filepath }}/g, graphic.path);      
+      const fileName = path.basename(filepath, '.scss');
+      const outputCSSPath = path.join('.', path.sep, '.build', graphic.name, `${fileName}.css`);
+      fs.writeFileSync(outputCSSPath, css);
+      logger.log('css', 'finished ' + filepath);
     } catch (err) {
       console.log(err);
     }

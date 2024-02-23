@@ -10,18 +10,19 @@ module.exports = {
         logger.log('svelte', 'compiling');
         let done = false;
 
-        const rootDir = __dirname.replace('/scripts/compile', '');
+        const compileDir = path.join(path.sep, 'scripts', 'compile');
+        const rootDir = __dirname.replace(compileDir, '');
         const buildDir = path.join(rootDir, '.build', graphic.name);
 
         webpack({
             mode: graphic.dest == 'remote' ? 'production' : 'development',
-            entry: path.join(rootDir, 'src', graphic.name, 'svelte/app.js'),
+            entry: path.join(rootDir, 'src', graphic.name, 'svelte', 'app.js'),
             output: {
                 path: buildDir
             },
             resolve: {
                 alias: {
-                    svelte: path.resolve('node_modules', 'svelte/src/runtime')
+                    svelte: path.resolve('node_modules', 'svelte', 'src', 'runtime')
                 },
                 extensions: ['.mjs', '.js', '.svelte'],
                 mainFields: ['svelte', 'browser', 'module', 'main'],
@@ -96,8 +97,9 @@ module.exports = {
 
         require('deasync').loopWhile(function(){return !done;});
 
-        if (!fs.existsSync(`.build/${graphic.name}/main.css`)) {
-            fs.writeFileSync(`.build/${graphic.name}/main.css`, '/* Silence is golden */');
+        const mainCssPath = path.join('.build', graphic.name, 'main.css');
+        if (!fs.existsSync(mainCssPath)) {
+            fs.writeFileSync(mainCssPath, '/* Silence is golden */');
         }
 
         fs.writeFileSync(`${buildDir}/index.html`, `<div id="svelte-${graphic.name}"></div>`);

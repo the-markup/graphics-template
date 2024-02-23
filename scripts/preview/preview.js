@@ -1,3 +1,4 @@
+const path = require('path');
 const handlebars = require('handlebars');
 const fs = require('fs-extra');
 
@@ -7,38 +8,46 @@ module.exports = {
     const graphics = fs.readdirSync('.build');
 
     graphics.forEach(graphic => {
-      if(fs.statSync(`.build/${graphic}`).isDirectory()) {
+      let graphicDir = path.join('.build', graphic);
+      if(fs.statSync(graphicDir).isDirectory()) {
         data[graphic] = this.graphicData(graphic);
       }
     });
 
-    const articleTemplate = fs.readFileSync('./scripts/preview/article.html', 'utf8');
+    const articlePath = path.join('.', 'scripts', 'preview', 'article.html');
+    const articleTemplate = fs.readFileSync(articlePath, 'utf8');
     const template = handlebars.compile(articleTemplate, data);
-    fs.writeFileSync('.build/index.html', template(data));
+    const indexPath = path.join('.build', 'index.html');
+    fs.writeFileSync(indexPath, template(data));
   },
 
   graphicData(name) {
-    const manifest = require(`../../.build/${name}/manifest.json`);
+    const manifestPath = path.join('..', '..', '.build', name, 'manifest.json');
+    const manifest = require(manifestPath);
     let graphic = new Object;
 
     graphic.config = new Object;
 
-    if (fs.existsSync(`src/${name}/config.json`)) {
-      graphic.config = JSON.parse(fs.readFileSync(`src/${name}/config.json`, 'utf8'));
+    const configPath = path.join('src', name, 'config.json');
+    if (fs.existsSync(configPath)) {
+      graphic.config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     }
 
     graphic.config.name = name;
 
-    graphic.html = fs.readFileSync(`.build/${name}/index.html`, 'utf8');
+    const indexPath = path.join('.build', name, 'index.html');
+    graphic.html = fs.readFileSync(indexPath, 'utf8');
 
     graphic.css = new Array;
     manifest.css.forEach(style => {
-      graphic.css.push(fs.readFileSync(`.build/${name}/${style}`, 'utf8'));
+      let cssPath = path.join('.build', name, style);
+      graphic.css.push(fs.readFileSync(cssPath, 'utf8'));
     });
 
     graphic.js = new Array;
     manifest.js.forEach(script => {
-      graphic.js.push(`/${name}/${script}`);
+      let jsPath = path.join(path.sep, name, script);
+      graphic.js.push(jsPath);
     });
 
     return graphic;

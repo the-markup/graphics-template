@@ -1,3 +1,4 @@
+const path = require('path');
 const handlebars = require('handlebars');
 const fs = require('fs-extra');
 const glob = require('glob');
@@ -6,13 +7,15 @@ const decache = require('decache');
 
 module.exports = {
   render(graphic) {
-    logger.log('html', `compiling src/${graphic.name}/index.html`);
+    const indexPath = path.join('src', graphic.name, 'index.html');
+    logger.log('html', `compiling ${indexPath}`);
 
     let data;
-
-    if (fs.existsSync('./src/' + graphic.name + '/data/data.js')) {
-      decache('../../src/' + graphic.name + '/data/data.js');
-      data = require('../../src/' + graphic.name + '/data/data.js').init();
+    const dataPath = path.join('.', 'src', graphic.name, 'data', 'data.js');
+    if (fs.existsSync(dataPath)) {
+      const cacheDataPath = path.join('..', '..', 'src', graphic.name, 'data', 'data.js');
+      decache(cacheDataPath);
+      data = require(cacheDataPath).init();
     } else {
       data = new Object;
     }
@@ -20,27 +23,33 @@ module.exports = {
     this.registerHelpers();
     this.registerPartials(graphic.name);
 
-    const html = fs.readFileSync('src/' + graphic.name + '/templates/index.html', 'utf8');
+    const templateIndexPath = path.join('src', graphic.name, 'templates', 'index.html');
+    const html = fs.readFileSync(templateIndexPath, 'utf8');
     const template = handlebars.compile(html);
-    fs.writeFileSync('.build/' + graphic.name + '/index.html', template({ path: graphic.path, data: data }));
+    const buildIndexPath = path.join('.build', graphic.name, 'index.html');
+    fs.writeFileSync(buildIndexPath, template({ path: graphic.path, data: data }));
 
-    logger.log('html', `finished src/${graphic.name}/index.html`);
+    logger.log('html', `finished ${indexPath}`);
 
     return 'index.html';
   },
 
   iframe(graphic, manifest) {
-    logger.log('html', `compiling src/${graphic.name}/iframe.html`);
+    const iframePath = path.join('src', graphic.name, 'iframe.html');
+    logger.log('html', `compiling ${iframePath}`);
 
-    const html = fs.readFileSync(`.build/${graphic.name}/index.html`, 'utf8');
+    const indexPath = path.join('.build', graphic.name, 'index.html');
+    const html = fs.readFileSync(indexPath, 'utf8');
     var css = '';
     var js = '';
 
     for (let file of manifest.css) {
-      css += fs.readFileSync(`.build/${graphic.name}/${file}`, 'utf8') + "\n";
+      let cssPath = path.join('.build', graphic.name, file);
+      css += fs.readFileSync(cssPath, 'utf8') + "\n";
     }
     for (let file of manifest.js) {
-      js += fs.readFileSync(`.build/${graphic.name}/${file}`, 'utf8') + "\n";
+      let jsPath = path.join('.build', graphic.name, file);
+      js += fs.readFileSync(jsPath, 'utf8') + "\n";
     }
 
     const iframe = `<!DOCTYPE html>
@@ -65,9 +74,10 @@ module.exports = {
     </script>
 </body>
 </html>`;
-    fs.writeFileSync('.build/' + graphic.name + '/iframe.html', iframe);
+    const buildIndexPath = path.join('.build', graphic.name, 'iframe.html');
+    fs.writeFileSync(buildIndexPath, iframe);
 
-    logger.log('html', `finished src/${graphic.name}/iframe.html`);
+    logger.log('html', `finished ${iframePath}`);
 
     return 'iframe.html';
   },
@@ -79,11 +89,14 @@ module.exports = {
   },
 
   registerPartials(graphicName) {
-    let partials = glob.sync('src/' + graphicName + '/templates/**/*.*');
-    partials = partials.concat(glob.sync('.exports/*.*'));
+    const templateMatch = path.join('src', graphicName, 'templates', '**', '*.*');
+    const exportsMatch = path.join('.exports', '*.*');
+    let partials = glob.sync(templateMatch);
+    partials = partials.concat(glob.sync(exportsMatch));
 
     partials.forEach(partial => {
-      const name = partial.replace('src/' + graphicName + '/templates/', '').replace('.exports', 'exports').split('.')[0];
+      const templatesDir = path.join('src', graphicName, 'templates', path.sep);
+      const name = partial.replace(templatesDir, '').replace('.exports', 'exports').split('.')[0];
       const template = fs.readFileSync(partial, 'utf8');
 
       handlebars.registerPartial(name, template);

@@ -13,7 +13,7 @@ module.exports = {
     paths.forEach(filepath => {
       this.render(filepath, graphic);
       const sassDir = path.join('src', graphic.name, 'sass', path.sep);
-      manifest.push(filepath.replace(sassDir, '').replace('.scss', '.css'));
+      manifest.push(filepath.replace(`src/${graphic.name}/sass/`, '').replace('.scss', '.css'));
     });
 
     return manifest;

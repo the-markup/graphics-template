@@ -1,4 +1,5 @@
 const watch = require('node-watch');
+const path = require('path');
 const browserSync = require('browser-sync').create();
 const browserSyncReuseTab = require('browser-sync-reuse-tab')(browserSync);
 
@@ -28,7 +29,7 @@ watch('src', { recursive: true }, function(event, file) {
   const isData = file.includes('/data/');
 
   let graphic = new Object;
-  graphic.name = file.replace('src/', '').split('/')[0];
+  graphic.name = file.replace('src' + path.sep, '').split(path.sep)[0];
   graphic.path = 'http://localhost:5001/' + graphic.name;
   graphic.dest = 'local';
 

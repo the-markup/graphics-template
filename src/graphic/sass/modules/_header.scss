@@ -1,0 +1,89 @@
+.blacklight-client__header {
+    position: relative;
+    color: $c-white;
+    background-color: $c-navy;
+  }
+  
+  .blacklight-client__header-inner {
+    position: relative;
+    z-index: 2;
+    padding: 15px 0;
+  }
+  
+  .blacklight-client__header-title {
+    font-family: $ff-sans;
+    color: $c-white;
+    font-size: $fs-xxl;
+    text-align: center;
+  
+    @include mq($bp-mobile) {
+      font-size: $fs-xxxl;
+      line-height: 1.2;
+    }
+  }
+  
+  .blacklight-client__header-logo-wrapper {
+    position: relative;
+    display: block;
+    width: 60vw;
+    margin: 15px auto 20px;
+    overflow: hidden;
+  
+    @include mq($bp-mobile) {
+      width: 300px;
+    }
+  }
+  
+  .blacklight-client__header-logo {
+    position: relative;
+    z-index: 5;
+    width: 60vw;
+  
+    @include mq($bp-mobile) {
+      width: 300px;
+    }
+  }
+  
+  .blacklight-client__header-logo-canvas {
+    position: absolute;
+    z-index: 4;
+    top: -40%;
+    left: -30%;
+    display: none;
+  
+    @include mq($bp-tablet) {
+      display: block;
+    }
+  }
+  
+  .blacklight-client__header-logo-scribble {
+    @include mq($bp-tablet) {
+      display: none;
+    }
+  }
+  
+  .blacklight-client__header-logo-animation {
+    position: absolute;
+    width: 160%;
+    top: -40%;
+    left: -30%;
+    display: none;
+    mix-blend-mode: color;
+  }
+  
+  .blacklight-client__header-subhead {
+    color: $c-white;
+    font-weight: normal;
+    text-align: center;
+    font-size: $fs-xs;
+    margin-bottom: 15px;
+  
+    @include mq($bp-mobile) {
+      font-size: $fs-md;
+    }
+  }
+  
+  .blacklight-client__header-description {
+    font-size: $fs-xxs;
+    padding-bottom: 10px;
+  }

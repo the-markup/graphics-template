@@ -1,16 +1,3 @@
 @import 'abstracts/mq';
 @import 'abstracts/variables';
 @import 'abstracts/functions';
-
-@import 'modules/header';
-@import 'modules/maintenance';
-
-.blacklight-client__content {
-    padding: 0 5vw;
-    max-width: 620px;
-    margin: 0 auto;
-  
-    @include mq($bp-tablet) {
-      padding: 0;
-    }
-  }

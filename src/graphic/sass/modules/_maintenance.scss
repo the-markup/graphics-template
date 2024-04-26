@@ -1,0 +1,12 @@
+.blacklight-maintenance__content {
+    background-color: $c-blacklight;
+    height: 100%;
+    
+    h1 {
+        max-width: 700px;
+        padding: 5vh;
+        color: white;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

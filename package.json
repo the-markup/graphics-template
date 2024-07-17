@@ -27,7 +27,7 @@
     "chalk": "^3.0.0",
     "css-loader": "^6.8.1",
     "csvjson": "^5.1.0",
-    "deasync": "^0.1.28",
+    "deasync": "^0.1.30",
     "decache": "^4.6.1",
     "fs-extra": "^8.1.0",
     "glob": "^7.2.3",

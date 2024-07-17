@@ -1,9 +1,6 @@
 name: "Trigger Manual Deploy to Production"
 
-on:
-  workflow_dispatch:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   deploy:
@@ -18,14 +15,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configure AWS credentials from Test account
-        uses: aws-actions/configure-aws-credentials@9e1405074160aa259ccddd6ba2520c8cfe6fbefa
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::183122854331:role/github-graphics-production-upload
           aws-region: us-east-1
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "20.5.0"
+          node-version: "20.15.1"
 
       - run: npm install
 

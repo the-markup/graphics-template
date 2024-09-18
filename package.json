@@ -52,6 +52,6 @@
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "watch": "^0.13.0",
-    "webpack": "^5.74.0"
+    "webpack": "^5.94.0"
   }
 }

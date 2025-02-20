@@ -24,7 +24,7 @@
   "dependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "browser-sync": "^3.0.2",
+    "browser-sync": "^3.0.3",
     "browser-sync-reuse-tab": "^1.0.3",
     "chalk": "^3.0.0",
     "css-loader": "^6.8.1",

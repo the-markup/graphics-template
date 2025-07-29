@@ -4,7 +4,7 @@ Structure and scripts for developing and deploying graphics on The Markup.
 
 ## Dependencies
 
-* [node.js](https://nodejs.org/) v20 (use [`nvm`](#using-nvm) to adjust your version if necessary)
+* [node.js](https://nodejs.org/) v22 (use [`nvm`](#using-nvm) to adjust your version if necessary)
 
 ## Quick start
 
@@ -124,7 +124,7 @@ Check which version of node.js you have installed:
 node --version
 ```
 
-If you're not using v14, you can use [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating) to download/install it. In the process of installing `nvm`, you'll be asked to adjust your `.bashrc` or  `.zshrc` file. Once you open a new terminal window, you should be able to download and activate a new version of node.js like this (using the version configured in the `.nvmrc` file):
+If you're not using v22, you can use [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating) to download/install it. In the process of installing `nvm`, you'll be asked to adjust your `.bashrc` or  `.zshrc` file. Once you open a new terminal window, you should be able to download and activate a new version of node.js like this (using the version configured in the `.nvmrc` file):
 
 ```
 cd graphics-2024-blobs

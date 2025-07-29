@@ -9,7 +9,7 @@ module.exports = {
 		logger.log('fallback', 'Taking screenshot...');
 
 		let browser = await puppeteer.launch({
-			args: ['no-sandbox']
+			args: ['--no-sandbox']
 		});
 		let page = await browser.newPage();
 		page.setViewport({
